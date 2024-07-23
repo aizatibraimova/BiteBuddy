@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Allergies</h1>
+
+<div id="allergies">
+  <% @allergies.each do |allergy| %>
+    <%= render allergy %>
+    <p>
+      <%= link_to "Show this allergy", allergy %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New allergy", new_allergy_path %>
