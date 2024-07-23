@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Food logs</h1>
+
+<div id="food_logs">
+  <% @food_logs.each do |food_log| %>
+    <%= render food_log %>
+    <p>
+      <%= link_to "Show this food log", food_log %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New food log", new_food_log_path %>

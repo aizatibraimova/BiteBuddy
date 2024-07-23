@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :analyses
+  resources :food_logs
   resources :allergies
   resources :foods
   resources :children
