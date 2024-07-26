@@ -15,4 +15,7 @@ class Child < ApplicationRecord
   has_many  :analyses, class_name: "Analysis", foreign_key: "child_id", dependent: :destroy
   has_many  :allergies, class_name: "Allergy", foreign_key: "child_id", dependent: :destroy
   has_many  :meals, class_name: "Meal", foreign_key: "child_id", dependent: :destroy
+
+  validates :name, presence: true
+  validates :date_of_birth, presence: true
 end

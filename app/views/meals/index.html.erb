@@ -6,9 +6,9 @@
   <% @meals.each do |meal| %>
     <%= render meal %>
     <p>
-      <%= link_to "Show this meal", meal %>
+      <%= link_to "Show this meal", [@child, meal] %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New meal", new_meal_path %>
+<%= link_to "New meal", new_child_meal_path(@child) %>
