@@ -1,10 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @meal %>
+<p>
+  <strong>Food:</strong>
+  <%= @meal.food.name %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @meal.notes %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @meal.date %>
+</p>
+
+<p>
+  <strong>Child:</strong>
+  <%= @child.name %>
+</p>
 
 <div>
-  <%= link_to "Edit this meal", edit_meal_path(@meal) %> |
-  <%= link_to "Back to meals", meals_path %>
-
-  <%= button_to "Destroy this meal", @meal, method: :delete %>
+  <%= link_to "Edit this meal", edit_child_meal_path(@child, @meal) %> |
+  <%= link_to "Back to meals", child_meals_path(@child) %>
 </div>

@@ -1,12 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Meals</h1>
+<h1>Meals for <%= @child.name %></h1>
 
 <div id="meals">
   <% @meals.each do |meal| %>
-    <%= render meal %>
     <p>
-      <%= link_to "Show this meal", [@child, meal] %>
+      Food: <%= meal.food.name %><br>
+      Notes: <%= meal.notes %><br>
+      Date: <%= meal.date %><br>
+      Child: <%= @child.name %>
+    </p>
+    <p>
+      <%= link_to "Show this meal", [@child, meal] %> |
+      <%= link_to "Edit this meal", edit_child_meal_path(@child, meal) %> |
+      <%= link_to "Delete this meal", [@child, meal], method: :delete, data: { confirm: "Are you sure?" } %>
     </p>
   <% end %>
 </div>

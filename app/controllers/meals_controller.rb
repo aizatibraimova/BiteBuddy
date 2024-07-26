@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: %i[ show edit update destroy ]
   before_action :set_child
+  before_action :set_meal, only: %i[ show edit update destroy ]
 
   # GET /meals or /meals.json
   def index
@@ -59,17 +59,21 @@ class MealsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meal
-      @meal = @child.meals.find(params[:id])
-    end
 
-    def set_child
-      @child = current_user.children.find(session[:selected_child_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meal
+    @meal = @child.meals.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def meal_params
-      params.require(:meal).permit(:food_id, :notes, :date, :quantity)
-    end
+  def set_child
+    Rails.logger.debug "Session selected_child_id: #{session[:selected_child_id]}"
+    @child = current_user.children.find(session[:selected_child_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to children_path, alert: "Please select a child first."
+  end
+
+  # Only allow a list of trusted parameters through.
+  def meal_params
+    params.require(:meal).permit(:food_id, :notes, :date, :quantity)
+  end
 end
