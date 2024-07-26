@@ -1,4 +1,4 @@
-<%= form_with(model: allergy) do |form| %>
+<%= form_with(model: [@child, @allergy]) do |form| %>
   <% if allergy.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(allergy.errors.count, "error") %> prohibited this allergy from being saved:</h2>
@@ -19,11 +19,6 @@
   <div>
     <%= form.label :severity, style: "display: block" %>
     <%= form.text_field :severity %>
-  </div>
-
-  <div>
-    <%= form.label :child_id, style: "display: block" %>
-    <%= form.number_field :child_id %>
   </div>
 
   <div>

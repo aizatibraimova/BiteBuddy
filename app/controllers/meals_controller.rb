@@ -66,7 +66,10 @@ class MealsController < ApplicationController
   end
 
   def set_child
-    Rails.logger.debug "Session selected_child_id: #{session[:selected_child_id]}"
+    unless session[:selected_child_id]
+      redirect_to children_path, alert: "Please select a child first."
+      return
+    end
     @child = current_user.children.find(session[:selected_child_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to children_path, alert: "Please select a child first."
