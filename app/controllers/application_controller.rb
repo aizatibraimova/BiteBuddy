@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  skip_forgery_protection
   before_action :set_children
+  skip_forgery_protection
 
   private
 

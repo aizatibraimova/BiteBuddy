@@ -7,6 +7,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <% if session[:selected_child_id].present? %>
@@ -21,13 +22,13 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'Meals', '#', class: 'nav-link disabled', title: 'Select a child first' %>
+              <%= link_to 'Meals', '#', class: 'nav-link', title: 'Select a child first' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Allergies', '#', class: 'nav-link disabled', title: 'Select a child first' %>
+              <%= link_to 'Allergies', '#', class: 'nav-link', title: 'Select a child first' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Analyses', '#', class: 'nav-link disabled', title: 'Select a child first' %>
+              <%= link_to 'Analyses', '#', class: 'nav-link', title: 'Select a child first' %>
             </li>
           <% end %>
           <li class="nav-item">
@@ -37,25 +38,33 @@
             <%= link_to 'Foods', foods_path, class: 'nav-link' %>
           </li>
         </ul>
-        <ul class="navbar-nav">
-          <% if @children.present? %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="childDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select Child
-              </a>
-              <div class="dropdown-menu" aria-labelledby="childDropdown">
-                <% @children.each do |child| %>
-                  <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('select-child-form-<%= child.id %>').submit();">
-                    <%= child.name %>
-                  </a>
-                  <%= form_with url: select_child_path, method: :post, id: "select-child-form-#{child.id}", style: "display: none;" do |form| %>
-                    <%= form.hidden_field :child_id, value: child.id %>
-                  <% end %>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="childDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Select Child
+            </a>
+            <div class="dropdown-menu" aria-labelledby="childDropdown">
+              <% @children.each do |child| %>
+                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('select-child-form-<%= child.id %>').submit();">
+                  <%= child.name %>
+                </a>
+                <%= form_with url: select_child_path, method: :post, id: "select-child-form-#{child.id}", style: "display: none;" do |form| %>
+                  <%= form.hidden_field :child_id, value: child.id %>
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <% if session[:selected_child_name].present? %>
+            <li class="nav-item">
+              <span class="navbar-text"> <%= session[:selected_child_name] %></span>
             </li>
           <% end %>
         </ul>
+
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
