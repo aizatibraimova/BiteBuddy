@@ -16,5 +16,5 @@ class Meal < ApplicationRecord
   belongs_to :food, required: true, class_name: "Food", foreign_key: "food_id"
   has_many  :analyses, class_name: "Analysis", foreign_key: "meal_id", dependent: :destroy
 
-  validates :food_id, :notes, :date, :quantity, presence: true
+  validates :food_id, presence: true
 end
