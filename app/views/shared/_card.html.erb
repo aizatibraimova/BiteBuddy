@@ -1,0 +1,23 @@
+<div class="card" style="width: 100%;">
+  <div class="card-header">
+    <%= header %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% items.each do |item| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><%= item[:name].html_safe %></span>
+        <span>
+          <%= link_to item[:edit_path] do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <%= link_to item[:delete_path], method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fas fa-trash-alt ml-2"></i>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+  <div class="card-footer">
+    <%= link_to footer_text, footer_link, class: 'btn btn-primary' %>
+  </div>
+</div>
