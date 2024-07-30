@@ -1,5 +1,5 @@
 class ChildrenController < ApplicationController
-  before_action :set_child, only: %i[ show edit update destroy ]
+  before_action :set_child, only: %i[ show edit update destroy details ]
 
   # GET /children or /children.json
   def index
@@ -61,7 +61,12 @@ class ChildrenController < ApplicationController
     selected_child = current_user.children.find(params[:child_id])
     session[:selected_child_id] = params[:child_id]
     session[:selected_child_name] = selected_child.name
-    redirect_to root_path, notice: "Child selected successfully."
+    redirect_to details_child_path(selected_child), notice: "Child selected successfully."
+  end
+
+  def details
+    @meals = @child.meals.includes(:food)
+    @allergies = @child.allergies
   end
 
   private

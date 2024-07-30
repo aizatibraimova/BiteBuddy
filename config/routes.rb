@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :children do
+    member do
+      get "details"
+    end
     resources :allergies
     resources :analyses
     resources :meals
