@@ -2,6 +2,8 @@ class AllergiesController < ApplicationController
   before_action :set_child
   before_action :set_allergy, only: %i[ show edit update destroy ]
 
+  helper AllergiesHelper
+
   # GET /allergies or /allergies.json
   def index
     @allergies = @child.allergies
