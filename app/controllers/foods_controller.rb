@@ -1,6 +1,8 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[ show edit update destroy ]
 
+  helper FoodsHelper
+
   # GET /foods or /foods.json
   def index
     @foods = Food.all
