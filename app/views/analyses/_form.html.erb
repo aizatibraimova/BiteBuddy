@@ -1,31 +1,26 @@
-<%= form_with(model: analysis) do |form| %>
+<%= form_with(model: [@child, analysis], local: true) do |form| %>
   <% if analysis.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(analysis.errors.count, "error") %> prohibited this analysis from being saved:</h2>
 
       <ul>
-        <% analysis.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% analysis.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div>
-    <%= form.label :child_id, style: "display: block" %>
-    <%= form.number_field :child_id %>
+    <%= form.label :child_name, "Child Name", style: "display: block" %>
+    <p><%= @child.name %></p>
   </div>
 
   <div>
-    <%= form.label :meal_id, style: "display: block" %>
-    <%= form.number_field :meal_id %>
+    <%= form.label :time_frame, "Select Time Frame", style: "display: block" %>
+    <%= form.select :time_frame, options_for_select([['2 Days', '2_days'], ['1 Week', '1_week'], ['2 Weeks', '2_weeks'], ['1 Month', '1_month']]), prompt: "Select a time frame" %>
   </div>
-
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
-  </div>
-
+  
   <div>
     <%= form.label :findings, style: "display: block" %>
     <%= form.text_field :findings %>
@@ -34,11 +29,6 @@
   <div>
     <%= form.label :recommendations, style: "display: block" %>
     <%= form.text_area :recommendations %>
-  </div>
-
-  <div>
-    <%= form.label :allergy_id, style: "display: block" %>
-    <%= form.number_field :allergy_id %>
   </div>
 
   <div>

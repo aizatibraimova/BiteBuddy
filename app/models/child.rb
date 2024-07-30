@@ -12,9 +12,9 @@
 #
 class Child < ApplicationRecord
   belongs_to :caregiver, required: true, class_name: "User", foreign_key: "caregiver_id"
-  has_many  :analyses, class_name: "Analysis", foreign_key: "child_id", dependent: :destroy
-  has_many  :allergies, class_name: "Allergy", foreign_key: "child_id", dependent: :destroy
-  has_many  :meals, class_name: "Meal", foreign_key: "child_id", dependent: :destroy
+  has_many  :allergies, dependent: :destroy
+  has_many  :meals, dependent: :destroy
+  has_many  :analyses, through: :meals
 
   validates :name, presence: true
   validates :date_of_birth, presence: true
