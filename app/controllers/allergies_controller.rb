@@ -28,7 +28,7 @@ class AllergiesController < ApplicationController
 
     respond_to do |format|
       if @allergy.save
-        format.html { redirect_to child_allergies_path(@child), notice: "Allergy was successfully created." }
+        format.html { redirect_to details_child_path(@child), notice: "Allergy was successfully created." }
         format.json { render :show, status: :created, location: @allergy }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class AllergiesController < ApplicationController
   def update
     respond_to do |format|
       if @allergy.update(allergy_params)
-        format.html { redirect_to child_allergy_path(@allergy), notice: "Allergy was successfully updated." }
+        format.html { redirect_to details_child_path(@child), notice: "Allergy was successfully updated." }
         format.json { render :show, status: :ok, location: @allergy }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class AllergiesController < ApplicationController
     @allergy.destroy!
 
     respond_to do |format|
-      format.html { redirect_to child_allergies_path(@child), notice: "Allergy was successfully destroyed." }
+      format.html { redirect_to details_child_path(@child), notice: "Allergy was successfully destroyed." }
       format.json { head :no_content }
     end
   end
