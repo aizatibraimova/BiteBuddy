@@ -9,5 +9,7 @@
 #  updated_at :datetime         not null
 #
 class Food < ApplicationRecord
-  has_many  :meals, class_name: "Meal", foreign_key: "food_id", dependent: :destroy
+  has_many  :meals, dependent: :destroy
+
+  validates :name, presence: true
 end

@@ -1,14 +1,41 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Analyses</h1>
-
-<div id="analyses">
+<div>
   <% @analyses.each do |analysis| %>
-    <%= render analysis %>
-    <p>
-      <%= link_to "Show this analysis", analysis %>
-    </p>
+    <div id="<%= dom_id(analysis) %>">
+      <p>
+        <strong>Child:</strong>
+        <%= analysis.child.name %>
+      </p>
+
+      <p>
+        <strong>Meal:</strong>
+        <%= analysis.meal.food.name %>
+      </p>
+
+      <p>
+        <strong>Date:</strong>
+        <%= analysis.date %>
+      </p>
+
+      <p>
+        <strong>Findings:</strong>
+        <%= analysis.findings %>
+      </p>
+
+      <p>
+        <strong>Recommendations:</strong>
+        <%= analysis.recommendations %>
+      </p>
+
+      <p>
+        <strong>Allergy:</strong>
+        <%= analysis.allergy.description %>
+      </p>
+
+      <p>
+        <%= link_to "Show this analysis", child_analysis_path(analysis.child, analysis) %>
+      </p>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New analysis", new_analysis_path %>
+<%= link_to 'New Analysis', new_child_analysis_path(@child, meal_id: @meal.try(:id), allergy_id: @allergy.try(:id)), class: 'btn btn-primary' %>
