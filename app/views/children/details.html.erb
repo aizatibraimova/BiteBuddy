@@ -1,0 +1,26 @@
+<h1><%= @child.name %>'s Details</h1>
+
+<h2>Meals</h2>
+<ul>
+  <% @meals.each do |meal| %>
+    <li>
+      <%= link_to meal.food.name, child_meal_path(@child, meal) %>
+      <p>Notes: <%= meal.notes %></p>
+      <p>Date: <%= meal.date %></p>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Log New Meal', new_child_meal_path(@child) %>
+
+<h2>Allergies</h2>
+<ul>
+  <% @allergies.each do |allergy| %>
+    <li>
+      <p>Reaction: <%= allergy.description %></p>
+      <p>Notes: <%= allergy.notes %></p>
+      <p>Severity: <%= allergy.severity %></p>
+      <%= link_to 'View Details', child_allergy_path(@child, allergy) %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Log New Allergy', new_child_allergy_path(@child) %>

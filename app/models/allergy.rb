@@ -14,4 +14,6 @@
 class Allergy < ApplicationRecord
   belongs_to :child, required: true, class_name: "Child", foreign_key: "child_id"
   has_many  :analyses, class_name: "Analysis", foreign_key: "allergy_id", dependent: :destroy
+
+  validates :description, :detected_date, presence: true
 end

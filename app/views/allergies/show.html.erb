@@ -1,10 +1,29 @@
-<p style="color: green"><%= notice %></p>
+<p>
+  <strong>Reaction:</strong>
+  <%= @allergy.description %>
+</p>
 
-<%= render @allergy %>
+<p>
+  <strong>Severity:</strong>
+  <%= @allergy.severity %>
+</p>
+
+<p>
+  <strong>Detected Date:</strong>
+  <%= @allergy.detected_date %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @allergy.notes %>
+</p>
+
+<p>
+  <strong>Child:</strong>
+  <%= @child.name %>
+</p>
 
 <div>
-  <%= link_to "Edit this allergy", edit_allergy_path(@allergy) %> |
-  <%= link_to "Back to allergies", allergies_path %>
-
-  <%= button_to "Destroy this allergy", @allergy, method: :delete %>
+  <%= link_to "Edit this allergy", edit_child_allergy_path(@child, @allergy) %> |
+  <%= link_to "Back to allergies", child_allergies_path(@child) %>
 </div>

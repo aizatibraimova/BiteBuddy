@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Allergies</h1>
+<h1>Allergies for <%= @child.name %></h1>
 
 <div id="allergies">
   <% @allergies.each do |allergy| %>
-    <%= render allergy %>
+    Reaction: <%= allergy.description %><br>
+    Severity: <%= allergy.severity %><br>
+    Detected Date: <%= allergy.detected_date %><br>
+    Notes: <%= allergy.notes %><br>
+    Child: <%= @child.name %>
     <p>
-      <%= link_to "Show this allergy", allergy %>
+      <%= link_to "Show this allergy", [@child, allergy] %> |
+      <%= link_to "Edit this allergy", edit_child_allergy_path(@child, allergy) %> |
+      <%= link_to "Delete this allergy", [@child, allergy], method: :delete, data: { confirm: "Are you sure?" } %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New allergy", new_allergy_path %>
+<%= link_to "New allergy", new_child_allergy_path(@child) %>

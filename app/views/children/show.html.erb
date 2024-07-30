@@ -1,8 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @child %>
+<h1><%= @child.name %></h1>
+<p>Age: <%= @child.date_of_birth %></p>
+<p>Gender: <%= @child.gender %></p>
 
 <div>
+  <%= link_to 'View Details', details_child_path(@child) %>
+
   <%= link_to "Edit this child", edit_child_path(@child) %> |
   <%= link_to "Back to children", children_path %>
 

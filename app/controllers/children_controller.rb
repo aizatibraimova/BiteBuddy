@@ -1,9 +1,9 @@
 class ChildrenController < ApplicationController
-  before_action :set_child, only: %i[ show edit update destroy ]
+  before_action :set_child, only: %i[ show edit update destroy details ]
 
   # GET /children or /children.json
   def index
-    @children = Child.all
+    @children = current_user.children
   end
 
   # GET /children/1 or /children/1.json
@@ -21,11 +21,11 @@ class ChildrenController < ApplicationController
 
   # POST /children or /children.json
   def create
-    @child = Child.new(child_params)
+    @child = current_user.children.build(child_params)
 
     respond_to do |format|
       if @child.save
-        format.html { redirect_to child_url(@child), notice: "Child was successfully created." }
+        format.html { redirect_to @child, notice: "Child was successfully created." }
         format.json { render :show, status: :created, location: @child }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -57,14 +57,27 @@ class ChildrenController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_child
-      @child = Child.find(params[:id])
-    end
+  def select
+    selected_child = current_user.children.find(params[:child_id])
+    session[:selected_child_id] = params[:child_id]
+    session[:selected_child_name] = selected_child.name
+    redirect_to details_child_path(selected_child), notice: "Child selected successfully."
+  end
 
-    # Only allow a list of trusted parameters through.
-    def child_params
-      params.require(:child).permit(:name, :date_of_birth, :gender, :caregiver_id)
-    end
+  def details
+    @meals = @child.meals.includes(:food)
+    @allergies = @child.allergies
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_child
+    @child = current_user.children.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def child_params
+    params.require(:child).permit(:name, :date_of_birth, :gender)
+  end
 end

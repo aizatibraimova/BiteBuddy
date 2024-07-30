@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  root "children#new"
+  root "children#index"
   devise_for :users
+
+  resources :children do
+    member do
+      get "details"
+    end
+    resources :allergies
+    resources :analyses
+    resources :meals
+  end
+
   resources :foods
-  resources :analyses
-  resources :children
-  resources :meals
-  resources :allergies
 
-  # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
-
-  # get "/your_first_screen" => "pages#first"
+  post "select_child", to: "children#select"
 end
