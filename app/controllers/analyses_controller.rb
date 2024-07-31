@@ -79,6 +79,12 @@ class AnalysesController < ApplicationController
     redirect_to children_path, alert: "Please select a child first."
   end
 
+  # Load meals and allergies for dropdowns
+  def load_associations
+    @meals = @child.meals.includes(:food)
+    @allergies = @child.allergies
+  end
+
   # Only allow a list of trusted parameters through.
   def analysis_params
     params.require(:analysis).permit(:meal_id, :date, :findings, :recommendations, :allergy_id)

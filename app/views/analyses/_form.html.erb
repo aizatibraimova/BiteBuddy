@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :child_name, "Child Name", style: "display: block" %>
-    <p><%= @child.name %></p>
+  <div class="form-group">
+    <%= form.label :child_name, "Child Name" %>
+    <p class="form-control-plaintext"><%= @child.name %></p>
   </div>
 
-  <div>
-    <%= form.label :time_frame, "Select Time Frame", style: "display: block" %>
-    <%= form.select :time_frame, options_for_select([['2 Days', '2_days'], ['1 Week', '1_week'], ['2 Weeks', '2_weeks'], ['1 Month', '1_month']]), prompt: "Select a time frame" %>
-  </div>
-  
-  <div>
-    <%= form.label :findings, style: "display: block" %>
-    <%= form.text_field :findings %>
+  <div class="form-group">
+    <%= form.label :time_frame, "Select Time Frame" %>
+    <%= form.select :time_frame, options_for_select([['2 Days', '2_days'], ['1 Week', '1_week'], ['2 Weeks', '2_weeks'], ['1 Month', '1_month']]),
+     { prompt: "Select a time frame" }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :recommendations, style: "display: block" %>
-    <%= form.text_area :recommendations %>
+  <div class="form-group">
+    <%= form.label :findings %>
+    <%= form.text_field :findings, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :recommendations %>
+    <%= form.text_area :recommendations, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Back to Details', details_child_path(@child), class: 'btn btn-secondary' %>
   </div>
 <% end %>

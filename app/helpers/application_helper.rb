@@ -11,7 +11,7 @@ module ApplicationHelper
       }
     when Allergy
       {
-        name: "#{link_to("Reaction: " + item.description, [child, item])}
+        name: "#{link_to(item.description, [child, item])}
                <div>Notes: #{item.notes}</div>
                <div>Severity: #{item.severity}</div>
                <div>Date: #{item.detected_date&.strftime("%Y-%m-%d") || "N/A"}</div>".html_safe,
