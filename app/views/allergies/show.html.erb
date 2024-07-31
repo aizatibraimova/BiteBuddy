@@ -1,29 +1,15 @@
-<p>
-  <strong>Reaction:</strong>
-  <%= @allergy.description %>
-</p>
+<h1>Allergy Details</h1>
 
-<p>
-  <strong>Severity:</strong>
-  <%= @allergy.severity %>
-</p>
-
-<p>
-  <strong>Detected Date:</strong>
-  <%= @allergy.detected_date %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @allergy.notes %>
-</p>
-
-<p>
-  <strong>Child:</strong>
-  <%= @child.name %>
-</p>
-
-<div>
-  <%= link_to "Edit this allergy", edit_child_allergy_path(@child, @allergy) %> |
-  <%= link_to "Back to allergies", child_allergies_path(@child) %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Allergy Details',
+          items: [item_card(@allergy, @allergy.description, @child)],
+          footer_link: details_child_path(@child),
+          footer_text: 'Back to Details'
+        }
+      %>
+    </div>
+  </div>
 </div>

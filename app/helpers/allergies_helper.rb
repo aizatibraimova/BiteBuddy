@@ -1,6 +1,7 @@
 module AllergiesHelper
   def allergy_descriptions
     [
+      "Rash",
       "Vomiting",
       "Diarrhea",
       "Cramps",

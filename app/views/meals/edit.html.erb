@@ -1,10 +1,20 @@
-<h1>Editing meal</h1>
+<h1>Edit Meal</h1>
 
-<%= render "form", meal: @meal %>
-
-<br>
-
-<div>
-  <%= link_to "Show this meal", [@child, @meal] %> |
-  <%= link_to "Back to meals", child_meals_path(@child) %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_with(model: [@child, @meal], local: true) do |form| %>
+        <div class="card">
+          <div class="card-header">Edit Meal</div>
+          <div class="card-body">
+            <%= render 'form', form: form %>
+          </div>
+          <div class="card-footer">
+            <%= form.submit 'Update Meal', class: 'btn btn-primary' %>
+            <%= link_to 'Back to Meals', child_meals_path(@child), class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

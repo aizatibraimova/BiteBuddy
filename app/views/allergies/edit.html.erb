@@ -1,10 +1,20 @@
-<h1>Editing allergy</h1>
+<h1>Edit Allergy</h1>
 
-<%= render "form", child: @child, allergy: @allergy %>
-
-<br>
-
-<div>
-  <%= link_to "Show this allergy", [@child, @allergy] %> |
-  <%= link_to "Back to allergies", child_allergies_path(@child) %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_with(model: [@child, @allergy], local: true) do |form| %>
+        <div class="card">
+          <div class="card-header">Edit Allergy</div>
+          <div class="card-body">
+            <%= render 'form', form: form %>
+          </div>
+          <div class="card-footer">
+            <%= form.submit 'Update Allergy', class: 'btn btn-primary' %>
+            <%= link_to 'Back to Details', details_child_path(@child), class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

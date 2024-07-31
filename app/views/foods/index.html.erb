@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <%= render partial: 'shared/card', locals: {
           header: 'Foods',
-          items: @foods.map { |food| food_item(food) },
+          items: @foods.map { |food| item_card(food, food.name) },
           footer_link: new_food_path,
           footer_text: 'New Food'
         }

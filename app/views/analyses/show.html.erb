@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<h1>Analysis Details</h1>
 
-<%= render @analysis %>
-
-<div>
-  <%= link_to "Edit this analysis", edit_analysis_path(@analysis) %> |
-  <%= link_to "Back to analyses", analyses_path %>
-
-  <%= button_to "Destroy this analysis", @analysis, method: :delete %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Analysis Details',
+          items: [item_card(@analysis, @analysis.title, @child)],
+          footer_link: child_details_path(@child),
+          footer_text: 'Back to Details'
+        }
+      %>
+    </div>
+  </div>
 </div>
