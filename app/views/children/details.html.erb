@@ -1,17 +1,11 @@
 <h1><%= @child.name %>'s Details</h1>
-<div class="container">
+
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
       <%= render partial: 'shared/card', locals: {
         header: 'Meals', 
-         items: @meals.map { |meal| { 
-          name: "#{link_to(meal.food.name, child_meal_path(@child, meal))}
-          <div>Notes: #{meal.notes}</div>
-          <div>Date: #{meal.date.strftime('%Y-%m-%d')}</div>".html_safe,
-
-          edit_path: edit_child_meal_path(@child, meal), 
-          delete_path: child_meal_path(@child, meal)
-        } }, 
+         items: @meals.map { |meal| meal_item(meal, @child) }, 
         footer_link: new_child_meal_path(@child), 
         footer_text: 'Log New Meal'
       } 
@@ -20,14 +14,7 @@
     <div class="col-md-6">
       <%= render partial: 'shared/card', locals: {
         header: 'Allergies', 
-        items: @allergies.map { |allergy| { 
-            name: "#{link_to(allergy.description, child_allergy_path(@child, allergy))}
-            <div>Notes: #{allergy.notes}</div>
-            <div>Severity: #{allergy.severity}</div>".html_safe,
-
-            edit_path: edit_child_allergy_path(@child, allergy), 
-            delete_path: child_allergy_path(@child, allergy)
-          } }, 
+        items: @allergies.map { |allergy| allergy_item(allergy, @child) }, 
         footer_link: new_child_allergy_path(@child), 
         footer_text: 'Log New Allergy'
       } 

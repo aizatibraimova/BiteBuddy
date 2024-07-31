@@ -1,19 +1,15 @@
-
 <h1>Allergies for <%= @child.name %></h1>
 
-<div id="allergies">
-  <% @allergies.each do |allergy| %>
-    Reaction: <%= allergy.description %><br>
-    Severity: <%= allergy.severity %><br>
-    Detected Date: <%= allergy.detected_date %><br>
-    Notes: <%= allergy.notes %><br>
-    Child: <%= @child.name %>
-    <p>
-      <%= link_to "Show this allergy", [@child, allergy] %> |
-      <%= link_to "Edit this allergy", edit_child_allergy_path(@child, allergy) %> |
-      <%= link_to "Delete this allergy", [@child, allergy], method: :delete, data: { confirm: "Are you sure?" } %>
-    </p>
-  <% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Allergies',
+          items: @allergies.map { |allergy| allergy_item(allergy, @child) },
+          footer_link: new_child_allergy_path(@child),
+          footer_text: "Log New Allergy"
+        }
+      %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New allergy", new_child_allergy_path(@child) %>

@@ -1,19 +1,15 @@
 <h1>Meals for <%= @child.name %></h1>
 
-<div id="meals">
-  <% @meals.each do |meal| %>
-    <p>
-      Food: <%= meal.food.name %><br>
-      Notes: <%= meal.notes %><br>
-      Date: <%= meal.date %><br>
-      Child: <%= @child.name %>
-    </p>
-    <p>
-      <%= link_to "Show this meal", [@child, meal] %> |
-      <%= link_to "Edit this meal", edit_child_meal_path(@child, meal) %> |
-      <%= link_to "Delete this meal", [@child, meal], method: :delete, data: { confirm: "Are you sure?" } %>
-    </p>
-  <% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Meals', 
+          items: @meals.map { |meal| meal_item(meal, @child) },
+          footer_link: new_child_meal_path(@child),
+          footer_text: "Log New Meal"
+        } 
+      %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New meal", new_child_meal_path(@child) %>
