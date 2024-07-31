@@ -14,4 +14,12 @@ module ApplicationHelper
       delete_path: child_allergy_path(child, allergy),
     }
   end
+
+  def food_item(food)
+    {
+      name: "#{link_to(food.name, food)}".html_safe,
+      edit_path: edit_food_path(food),
+      delete_path: food_path(food)
+    }
+  end
 end
