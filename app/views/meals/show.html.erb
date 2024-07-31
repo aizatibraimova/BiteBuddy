@@ -1,24 +1,15 @@
-<p>
-  <strong>Food:</strong>
-  <%= @meal.food.name %>
-</p>
+<h1>Meal Details</h1>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @meal.notes %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @meal.date %>
-</p>
-
-<p>
-  <strong>Child:</strong>
-  <%= @child.name %>
-</p>
-
-<div>
-  <%= link_to "Edit this meal", edit_child_meal_path(@child, @meal) %> |
-  <%= link_to "Back to meals", child_meals_path(@child) %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Meal Details',
+          items: [item_card(@meal, @meal.food.name, @child)],
+          footer_link: edit_child_meal_path(@child, @meal),
+          footer_text: 'Edit Meal'
+        }
+      %>
+    </div>
+  </div>
 </div>
