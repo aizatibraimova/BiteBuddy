@@ -19,7 +19,15 @@ module ApplicationHelper
     {
       name: "#{link_to(food.name, food)}".html_safe,
       edit_path: edit_food_path(food),
-      delete_path: food_path(food)
+      delete_path: food_path(food),
+    }
+  end
+
+  def child_item(child)
+    {
+      name: "#{link_to(child.name, child)}".html_safe,
+      edit_path: edit_child_path(child),
+      delete_path: child_path(child),
     }
   end
 end

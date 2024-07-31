@@ -1,12 +1,15 @@
 <h1>Children</h1>
 
-<div id="children">
-  <% @children.each do |child| %>
-    <%= render child %>
-    <p>
-      <%= link_to "Show this child", child %>
-    </p>
-  <% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Children',
+          items: @children.map { |child| child_item(child) },
+          footer_link: new_child_path,
+          footer_text: 'New Child'
+        }
+      %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New child", new_child_path %>
