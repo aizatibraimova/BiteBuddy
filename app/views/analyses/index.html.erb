@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <%= render partial: 'shared/card', locals: {
           header: 'Analyses',
-          items: @analyses.map { |analysis| analysis_item(analysis, @child) },
+          items: @analyses.map { |analysis| item_card(analysis, analysis.title, @child) },
           footer_link: new_child_analysis_path(@child),
           footer_text: 'New Analysis'
         }
