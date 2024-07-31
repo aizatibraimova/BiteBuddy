@@ -5,13 +5,9 @@
     <div class="col-md-12">
       <%= render partial: 'shared/card', locals: {
           header: 'Meals', 
-          items: @meals.map { |meal| { 
-            name: "#{link_to('Food: ' + meal.food.name, [@child, meal])}<div>Notes: #{meal.notes}</div><div>Date: #{meal.date}</div><div>Child: #{@child.name}</div>".html_safe,
-            edit_path: edit_child_meal_path(@child, meal), 
-            delete_path: child_meal_path(@child, meal)
-          } }, 
-          footer_link: new_child_meal_path(@child), 
-          footer_text: 'New meal'
+          items: @meals.map { |meal| meal_item(meal, @child) },
+          footer_link: new_child_meal_path(@child),
+          footer_text: "Log New Meal"
         } 
       %>
     </div>
