@@ -12,7 +12,7 @@
 
   <div class="form-group">
     <%= form.label :food_id %>
-    <%= form.collection_select :food_id, Food.all, :id, :name, prompt: true, class: 'form-control' %>
+    <%= form.select :food_id, options_for_select(Food.pluck(:name, :id)), { prompt: "Select a food" }, class: "form-control" %>
   </div>
   
   <div class="form-group">
@@ -22,6 +22,6 @@
   
   <div class="form-group">
     <%= form.label :date %>
-    <%= form.date_select :date, class: 'form-control' %>
+    <%= form.date_field :date, class: 'form-control' %>
   </div>
 <% end %>

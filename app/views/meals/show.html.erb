@@ -6,8 +6,8 @@
       <%= render partial: 'shared/card', locals: {
           header: 'Meal Details',
           items: [item_card(@meal, @meal.food.name, @child)],
-          footer_link: edit_child_meal_path(@child, @meal),
-          footer_text: 'Edit Meal'
+          footer_link: details_child_path(@child),
+          footer_text: 'Back to Details'
         }
       %>
     </div>

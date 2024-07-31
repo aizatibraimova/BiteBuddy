@@ -1,37 +1,33 @@
 <%= form_with(model: [@child, @allergy], local: true) do |form| %>
-  <% if allergy.errors.any? %>
+  <% if @allergy.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(allergy.errors.count, "error") %> prohibited this allergy from being saved:</h2>
+      <h2><%= pluralize(@allergy.errors.count, "error") %> prohibited this allergy from being saved:</h2>
 
       <ul>
-        <% allergy.errors.each do |error| %>
+        <% @allergy.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.select :description, options_for_select(allergy_descriptions), { prompt: "Select an allergy description" } %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.select :description,  options_for_select(allergy_descriptions), { prompt: "Select an allergy description" }, class: "form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :severity, style: "display: block" %>
-    <%= form.select :severity, options_for_select(allergy_severities), { prompt: "Select severity" } %>
+  <div class="form-group">
+    <%= form.label :severity %>
+    <%= form.select :severity, options_for_select(allergy_severities), { prompt: "Select severity" }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :detected_date, style: "display: block" %>
-    <%= form.date_field :detected_date %>
+  <div class="form-group">
+    <%= form.label :detected_date%>
+    <%= form.date_field :detected_date, class: "form-contol" %>
   </div>
 
-  <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+ <div class="form-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, class: 'form-control' %>
   </div>
 <% end %>
