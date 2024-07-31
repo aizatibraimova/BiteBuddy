@@ -1,41 +1,15 @@
-<div>
-  <% @analyses.each do |analysis| %>
-    <div id="<%= dom_id(analysis) %>">
-      <p>
-        <strong>Child:</strong>
-        <%= analysis.child.name %>
-      </p>
+<h1>Analyses for <%= @child.name %></h1>
 
-      <p>
-        <strong>Meal:</strong>
-        <%= analysis.meal.food.name %>
-      </p>
-
-      <p>
-        <strong>Date:</strong>
-        <%= analysis.date %>
-      </p>
-
-      <p>
-        <strong>Findings:</strong>
-        <%= analysis.findings %>
-      </p>
-
-      <p>
-        <strong>Recommendations:</strong>
-        <%= analysis.recommendations %>
-      </p>
-
-      <p>
-        <strong>Allergy:</strong>
-        <%= analysis.allergy.description %>
-      </p>
-
-      <p>
-        <%= link_to "Show this analysis", child_analysis_path(analysis.child, analysis) %>
-      </p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Analyses',
+          items: @analyses.map { |analysis| analysis_item(analysis, @child) },
+          footer_link: new_child_analysis_path(@child),
+          footer_text: 'New Analysis'
+        }
+      %>
     </div>
-  <% end %>
+  </div>
 </div>
-
-<%= link_to 'New Analysis', new_child_analysis_path(@child, meal_id: @meal.try(:id), allergy_id: @allergy.try(:id)), class: 'btn btn-primary' %>

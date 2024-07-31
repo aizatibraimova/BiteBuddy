@@ -30,4 +30,12 @@ module ApplicationHelper
       delete_path: child_path(child),
     }
   end
+
+  def analysis_item(analysis, child)
+    {
+      name: "#{link_to(analysis.title, [child, analysis])}<div>Notes: #{analysis.notes}</div><div>Date: #{analysis.date}</div>".html_safe,
+      edit_path: edit_child_analysis_path(child, analysis),
+      delete_path: child_analysis_path(child, analysis)
+    }
+  end
 end
