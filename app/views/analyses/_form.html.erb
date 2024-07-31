@@ -32,6 +32,10 @@
     <%= form.text_area :recommendations, class: "form-control" %>
   </div>
 
+  <div id="meals_and_allergies_data">
+    <!-- The fetched data will be populated here -->
+  </div>
+
   <div class="form-group">
     <%= form.submit class: "btn btn-primary" %>
     <%= link_to 'Back to Details', details_child_path(@child), class: 'btn btn-secondary' %>
