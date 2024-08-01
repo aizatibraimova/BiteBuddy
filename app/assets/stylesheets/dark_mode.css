@@ -1,0 +1,18 @@
+body.dark-mode {
+  background-color: #8E7AB5;
+  color: #F7E7DC;
+}
+
+.navbar.dark-mode {
+  background-color: #FFEBB2;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #E493B3
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #E493B3
+}
+
+/* Add more dark mode styles as needed */

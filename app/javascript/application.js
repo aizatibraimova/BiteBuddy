@@ -12,3 +12,4 @@ import Rails from "@rails/ujs"
 Rails.start();
 
 import "./dynamic_selects"
+import "./dark_mode_toggle"
