@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       get "details"
     end
     resources :allergies
-    resources :analyses
+    resources :analyses do
+      collection do
+        get "fetch_meals_and_allergies"
+      end
+    end
     resources :meals
   end
 

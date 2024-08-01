@@ -65,44 +65,21 @@ class ChildrenController < ApplicationController
   end
 
   def details
-    @meals = @child.meals.includes(:food)
-    @allergies = @child.allergies
-  end
-
-  def fetch_meals_and_allergies
-    time_frame = params[:time_frame]
-
-    start_date = case time_frame
-                 when '2_days'
-                   2.days.ago
-                 when '1_week'
-                   1.week.ago
-                 when '2_weeks'
-                   2.weeks.ago
-                 when '1_month'
-                   1.month.ago
-                 else
-                   nil
-                 end
-
-    if start_date
-      meals = @child.meals.where('date >= ?', start_date).includes(:food)
-      allergies = @child.allergies.where('detected_date >= ?', start_date)
-
-      render json: {
-        meals: meals.map { |meal| { id: meal.id, food_name: meal.food.name, date: meal.date } },
-        allergies: allergies.map { |allergy| { id: allergy.id, description: allergy.description, detected_date: allergy.detected_date } }
-      }
-    else
-      render json: { meals: [], allergies: [] }
-    end
+    @meals = @child.meals.includes(:food).order(date: :desc)
+    @allergies = @child.allergies.order(detected_date: :desc)
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_child
-    @child = current_user.children.find(params[:id])
+    unless session[:selected_child_id]
+      redirect_to children_path, alert: "Please select a child first."
+      return
+    end
+    @child = current_user.children.find(session[:selected_child_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to children_path, alert: "Please select a child first."
   end
 
   # Only allow a list of trusted parameters through.
