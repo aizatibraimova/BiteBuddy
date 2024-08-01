@@ -12,8 +12,34 @@
  *
  *= require_tree .
  *= require_self
+ *= require dark_mode
  */
  .navbar-brand img {
   height: 80px;
   width: auto;
+}
+
+.headline, .subheadline, .cta, .features, .benefits, .screenshots, .how-it-works, .about-us, .contact-info, footer {
+  margin: 20px auto;
+  text-align: center;
+  max-width: 800px;
+}
+
+.headline h1 {
+  font-size: 2.5em;
+}
+
+.subheadline p, .benefits p, .about-us p, .contact-info p {
+  font-size: 1.2em;
+}
+
+.cta .btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+.features ul, .how-it-works ol {
+  list-style-position: inside;
+  text-align: left;
 }

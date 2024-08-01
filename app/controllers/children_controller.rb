@@ -1,4 +1,5 @@
 class ChildrenController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_child, only: %i[ show edit update destroy details ]
 
   # GET /children or /children.json
@@ -58,13 +59,19 @@ class ChildrenController < ApplicationController
   end
 
   def select
-    selected_child = current_user.children.find(params[:child_id])
-    session[:selected_child_id] = params[:child_id]
-    session[:selected_child_name] = selected_child.name
-    redirect_to details_child_path(selected_child), notice: "Child selected successfully."
+    @selected_child = current_user.children.find(params[:child_id])
+    session[:selected_child_id] = @selected_child.id
+    redirect_to details_child_path(@selected_child)
   end
 
   def details
+    @children = current_user.children
+    if params[:id]
+      @child = current_user.children.find(params[:id])
+    else
+      @child = @children.first
+    end
+
     @meals = @child.meals.includes(:food).order(date: :desc)
     @allergies = @child.allergies.order(detected_date: :desc)
   end
