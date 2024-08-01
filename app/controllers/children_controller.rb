@@ -65,8 +65,8 @@ class ChildrenController < ApplicationController
   end
 
   def details
-    @meals = @child.meals.includes(:food)
-    @allergies = @child.allergies
+    @meals = @child.meals.includes(:food).order(date: :desc)
+    @allergies = @child.allergies.order(detected_date: :desc)
   end
 
   private
