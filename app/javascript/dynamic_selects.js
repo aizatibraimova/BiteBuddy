@@ -6,7 +6,7 @@ document.addEventListener('turbo:load', function() {
       const timeFrame = this.value;
       const childId = this.dataset.childId;
 
-      fetch(`/children/${childId}/fetch_meals_and_allergies?time_frame=${timeFrame}`, {
+      fetch(`/children/${childId}/analyses/fetch_meals_and_allergies?time_frame=${timeFrame}`, {
         headers: {
           'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content,
           'Accept': 'application/json'
@@ -14,19 +14,25 @@ document.addEventListener('turbo:load', function() {
       })
       .then(response => response.json())
       .then(data => {
+        const findingsField = document.querySelector('input[name="analysis[findings]"]');
+        const recommendationsField = document.querySelector('textarea[name="analysis[recommendations]"]');
         const dataDiv = document.getElementById('meals_and_allergies_data');
 
         let mealsContent = '<h3>Meals</h3>';
         data.meals.forEach(meal => {
-          mealsContent += `<p>Food: ${meal.food_name} - Date: ${meal.date}</p>`;
+          mealsContent += `<p>Food: ${meal.food_name} - Date: ${meal.date} - Notes: ${meal.notes}</p>`;
         });
 
         let allergiesContent = '<h3>Allergies</h3>';
         data.allergies.forEach(allergy => {
-          allergiesContent += `<p>Reaction: ${allergy.description} - Date: ${allergy.detected_date}</p>`;
+          allergiesContent += `<p>Reaction: ${allergy.description} - Date: ${allergy.detected_date} - Notes: ${allergy.notes}</p>`;
         });
 
-        dataDiv.innerHTML = mealsContent + allergiesContent;
+        let analysisContent = `<h3>Analysis</h3><p>Findings: ${data.findings}</p><p>Recommendations: ${data.recommendations}</p>`;
+
+        findingsField.value = data.findings;
+        recommendationsField.value = data.recommendations;
+        dataDiv.innerHTML = mealsContent + allergiesContent + analysisContent;
       });
     });
   }
