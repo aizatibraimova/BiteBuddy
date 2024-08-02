@@ -1,18 +1,53 @@
 body.dark-mode {
-  background-color: #8E7AB5;
-  color: #F7E7DC;
+  background-color: #010507;
+  color: #DDF3FD;
+}
+
+body.light-mode {
+  background-color: #F5FCFF;
+  color: #021822;
+}
+
+body.dark-mode .card {
+  background-color: #1a1a1a; 
+  color: #DDF3FD; 
+}
+
+body.light-mode .card {
+  background-color: #ffffff; 
+  color: #021822; 
+}
+
+body.dark-mode .list-group-item {
+  background-color: #2a2a2a; 
+  color: #DDF3FD; 
+}
+
+body.light-mode .list-group-item {
+  background-color: #f8f9fa; 
+  color: #021822; 
 }
 
 .navbar.dark-mode {
-  background-color: #FFEBB2;
+  background: linear-gradient(to right, #bee7fa,#0BB2EA, #7B0792 );
+}
+
+.navbar.light-mode {
+  background: linear-gradient(to right,  #c4eafa, #15BCF4,#E16DF8 );
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #E493B3
+  color: #DDF3FD;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: #E493B3
+  color: #AA087C;
 }
 
-/* Add more dark mode styles as needed */
+.navbar-light .navbar-nav .nav-link {
+  color: #021822;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #F755C9;
+}
