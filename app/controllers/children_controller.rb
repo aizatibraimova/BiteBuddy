@@ -66,14 +66,13 @@ class ChildrenController < ApplicationController
 
   def details
     @children = current_user.children
-    if params[:id]
-      @child = current_user.children.find(params[:id])
-    else
-      @child = @children.first
-    end
+    @child = @children.find(params[:id])
 
-    @meals = @child.meals.includes(:food).order(date: :desc)
-    @allergies = @child.allergies.order(detected_date: :desc)
+    @q_meals = @child.meals.ransack(params[:q_meals])
+    @meals = @q_meals.result.includes(:food).order(date: :desc)
+
+    @q_allergies = @child.allergies.ransack(params[:q_allergies])
+    @allergies = @q_allergies.result.order(detected_date: :desc)
   end
 
   private

@@ -6,7 +6,8 @@ class AllergiesController < ApplicationController
 
   # GET /allergies or /allergies.json
   def index
-    @allergies = @child.allergies
+    @q = @child.allergies.ransack(params[:q])
+    @allergies = @q.result(distinct: true)
   end
 
   # GET /allergies/1 or /allergies/1.json

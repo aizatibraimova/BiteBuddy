@@ -19,6 +19,8 @@ gem "puma"
 
 gem "openai"
 
+gem "ransack"
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
@@ -79,7 +81,6 @@ end
 # ===========
 gem "appdev_support"
 gem "awesome_print"
-gem "devise"
 gem "dotenv-rails"
 gem "faker"
 gem "htmlbeautifier"

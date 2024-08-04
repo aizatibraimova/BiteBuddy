@@ -4,7 +4,8 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = @child.meals
+    @q = @child.meals.ransack(params[:q])
+    @meals = @q.result(distinct: true)
   end
 
   # GET /meals/1 or /meals/1.json

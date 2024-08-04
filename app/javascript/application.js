@@ -10,6 +10,8 @@ window.$ = jquery;
 
 import Rails from "@rails/ujs"
 Rails.start();
+ActiveStorage.start()
+channels.start()
 
-import "./dynamic_selects"
 import "./dark_mode_toggle"
+import "./fetch_analysis_data"
