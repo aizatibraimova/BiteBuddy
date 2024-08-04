@@ -17,4 +17,10 @@ class Meal < ApplicationRecord
   has_many  :analyses, class_name: "Analysis", foreign_key: "meal_id", dependent: :destroy
 
   validates :food_id, :date, presence: true
+
+  include RansackableAttributes
+
+  def self.ransackable_attributes(auth_object = nil)
+    super + ["additional_attribute"]
+  end
 end

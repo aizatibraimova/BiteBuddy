@@ -3,6 +3,31 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-12">
+      <!-- Ransack form for filtering -->
+      <%= search_form_for @q, url: child_meals_path(@child), method: :get do |f| %>
+        <div class="row mb-3">
+          <div class="col">
+            <%= f.label :created_at_gteq, "From Date" %>
+            <%= f.date_field :created_at_gteq, class: "form-control" %>
+          </div>
+          <div class="col">
+            <%= f.label :created_at_lteq, "To Date" %>
+            <%= f.date_field :created_at_lteq, class: "form-control" %>
+          </div>
+          <div class="col">
+            <%= f.submit "Search", class: "btn btn-primary mt-4" %>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Quick date range links -->
+      <div class="mb-3">
+        <%= link_to "Last 2 Days", child_meals_path(@child, q: { created_at_gteq: 2.days.ago, created_at_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
+        <%= link_to "Last Week", child_meals_path(@child, q: { created_at_gteq: 1.week.ago, created_at_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
+        <%= link_to "Last 2 Weeks", child_meals_path(@child, q: { created_at_gteq: 2.weeks.ago, created_at_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
+        <%= link_to "Last Month", child_meals_path(@child, q: { created_at_gteq: 1.month.ago, created_at_lteq: Time.current }), class: "btn btn-secondary" %>
+      </div>
+
       <%= render partial: 'shared/card', locals: {
           header: 'Meals', 
           items: @meals.map { |meal| item_card(meal, meal.food.name, @child) },
