@@ -43,3 +43,8 @@ examples.txt
 !/db/*.sqlite3-journal
 
 /config/credentials/production.key
+
+echo "db/*.sqlite3" >> .gitignore
+echo "db/*.sqlite3-shm" >> .gitignore
+echo "db/*.sqlite3-wal" >> .gitignore
+
