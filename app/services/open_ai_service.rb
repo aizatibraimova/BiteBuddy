@@ -1,4 +1,4 @@
-class OpenAIService
+class OpenAiService
   def initialize(api_key)
     @client = OpenAI::Client.new(api_key: api_key)
   end
