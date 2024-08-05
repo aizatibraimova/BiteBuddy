@@ -4,7 +4,6 @@ class LandingPageController < ApplicationController
   def index
     if user_signed_in?
       @children = current_user.children
-      # Any other data you need for authenticated users
     end
   end
 end
