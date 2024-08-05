@@ -13,13 +13,17 @@ Rails.application.routes.draw do
     member do
       get "details", to: "children#details", as: :details
     end
-    resources :allergies
+    resources :allergies do
+      resources :analyses, only: [:index, :create]
+    end
+    resources :meals  do
+      resources :analyses, only: [:index, :create]
+    end
     resources :analyses do
       collection do
-        post "fetch_meals_and_allergies"
+        get "fetch_meals_and_allergies"
       end
     end
-    resources :meals
   end
 
   resources :foods
