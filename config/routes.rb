@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :allergies
     resources :analyses do
       collection do
-        get "fetch_meals_and_allergies"
+        post "fetch_meals_and_allergies"
       end
     end
     resources :meals
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
 
   resources :foods
 
-  post "select_child", to: "children#select"
+  post "select_child", to: "children#select", as: 'select_child'
 end
