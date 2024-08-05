@@ -17,5 +17,6 @@ class Analysis < ApplicationRecord
   belongs_to :meal, required: true, class_name: "Meal", foreign_key: "meal_id"
   belongs_to :allergy, required: true, class_name: "Allergy", foreign_key: "allergy_id"
 
-  validates :findings, :recommendations, :time_frame, presence: true
+  validates :findings, presence: true, allow_blank: true
+  validates :recommendations, presence: true, allow_blank: true
 end

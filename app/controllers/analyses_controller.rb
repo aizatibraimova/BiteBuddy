@@ -14,7 +14,6 @@ class AnalysesController < ApplicationController
   # GET /analyses/new
   def new
     @analysis = @child.analyses.new
-
   end
 
   # GET /analyses/1/edit
@@ -25,8 +24,30 @@ class AnalysesController < ApplicationController
   def create
     @analysis = @child.analyses.new(analysis_params)
 
+    # Associate meal and allergy based on the selected child
+    @analysis.meal = @child.meals.find_by(id: params[:analysis][:meal_id])
+    @analysis.allergy = @child.allergies.find_by(id: params[:analysis][:allergy_id])
+
+    # Ensure the associations exist
+    if @analysis.meal.nil? || @analysis.allergy.nil?
+      @analysis.errors.add(:base, "Meal or Allergy not found for the selected child.")
+      render :new, status: :unprocessable_entity and return
+    end
+
+    # Call the OpenAI API for analysis if meal and allergy are present
+    if @analysis.meal && @analysis.allergy
+      meals_data = [{ food_name: @analysis.meal.food.name, date: @analysis.meal.date, notes: @analysis.meal.notes }]
+      allergies_data = [{ description: @analysis.allergy.description, detected_date: @analysis.allergy.detected_date, notes: @analysis.allergy.notes }]
+
+      analysis_result = analyze_data_with_openai(meals_data, allergies_data)
+      findings, recommendations = parse_analysis(analysis_result)
+
+      @analysis.findings = findings
+      @analysis.recommendations = recommendations
+    end
+
     respond_to do |format|
-     if @analysis.save
+      if @analysis.save
         format.html { redirect_to child_analysis_url(@child, @analysis), notice: "Analysis was successfully created." }
         format.json { render :show, status: :created, location: @analysis }
       else
@@ -120,34 +141,11 @@ class AnalysesController < ApplicationController
   end
 
   def analyze_data_with_openai(meals, allergies)
-    client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
-
-    # Generate the prompt
-    prompt = "Analyze the following data and find patterns or insights:\n\n"
-    prompt += "Meals:\n"
-    meals.each do |meal|
-      prompt += "- Food: #{meal[:food_name]}, Date: #{meal[:date]}, Notes: #{meal[:notes]}\n"
-    end
-    prompt += "\nAllergies:\n"
-    allergies.each do |allergy|
-      prompt += "- Reaction: #{allergy[:description]}, Date: #{allergy[:detected_date]}, Notes: #{allergy[:notes]}\n"
-    end
-    prompt += "\nProvide a detailed analysis of any patterns or insights you can find. Separate findings and recommendations clearly."
-
-    # Send the prompt to OpenAI API
-    response = client.completions(
-      parameters: {
-        model: "text-davinci-003",
-        prompt: prompt,
-        max_tokens: 300,
-      },
-    )
-
-    response["choices"].first["text"].strip
+    openai_service = OpenAIService.new(ENV["OPENAI_API_KEY"])
+    openai_service.analyze_data(meals, allergies)
   end
 
   def parse_analysis(analysis_result)
-    # Assume the analysis result separates findings and recommendations with specific markers
     findings_marker = "Findings:"
     recommendations_marker = "Recommendations:"
 
