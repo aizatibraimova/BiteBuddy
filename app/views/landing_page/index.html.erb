@@ -1,15 +1,19 @@
-<%= render 'landing_page/partials/headline' %>
-<%= render 'landing_page/partials/subheadline' %>
-
-<% if user_signed_in? %>
-  <%= render 'landing_page/partials/select_child' %>
-<% else %>
-  <%= render 'landing_page/partials/cta' %>
-  <%= render 'landing_page/partials/features' %>
-  <%= render 'landing_page/partials/benefits' %>
-  <%= render 'landing_page/partials/how_it_works' %>
-<% end %>
-
-<%= render 'landing_page/partials/about_us' %>
-<%= render 'landing_page/partials/contact_info' %>
-<%= render 'landing_page/partials/footer' %>
+<div class="landing-page">
+  <%= render 'landing_page/partials/one_liner' %>
+  <% if user_signed_in? %>
+    <%= render 'landing_page/partials/select_child' %>
+  <% else %>
+    <%= render 'landing_page/partials/cta' %>
+  <% end %>
+  <div class="content-wrapper">
+    <div class="logo-wrapper">
+      <%= image_tag 'background/landin_page_image.jpg', alt: 'BiteBuddy Image', class: 'logo-image' %>
+    </div>
+    <div class="text-content">
+      <%= render 'landing_page/partials/how_to_use' %>
+    </div>
+    <% unless user_signed_in? %>
+      <%= render 'landing_page/partials/about_us' %>
+    <% end %>
+  </div>
+</div>
