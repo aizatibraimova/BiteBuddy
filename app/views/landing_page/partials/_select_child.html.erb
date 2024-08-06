@@ -1,19 +1,21 @@
-<div class="card mx-auto" style="max-width: 400px;">
-  <div class="card-body">
-    <h5 class="card-title">Select a Child</h5>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="childDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Select Child
-      </button>
-      <div class="dropdown-menu" aria-labelledby="childDropdown">
-        <% @children.each do |child| %>
-          <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('select-child-form-<%= child.id %>').submit();">
-            <%= child.name %>
-          </a>
-          <%= form_with url: select_child_path, method: :post, id: "select-child-form-#{child.id}", style: "display: none;" do |form| %>
-            <%= form.hidden_field :child_id, value: child.id %>
+<div class="select-child-section">
+  <div class="card mx-auto" style="max-width: 400px;">
+    <div class="card-body">
+      <h5 class="card-title">Select a Child</h5>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="childDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Child
+        </button>
+        <div class="dropdown-menu" aria-labelledby="childDropdown">
+          <% @children.each do |child| %>
+            <a class="dropdown-item" href="#" data-form-id="select-child-form-<%= child.id %>">
+              <%= child.name %>
+            </a>
+            <%= form_with url: select_child_path, method: :post, id: "select-child-form-#{child.id}", style: "display: none;" do |form| %>
+              <%= form.hidden_field :child_id, value: child.id %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>

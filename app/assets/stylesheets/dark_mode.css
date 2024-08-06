@@ -1,11 +1,19 @@
+
+
 body.dark-mode {
   background-color: #010507;
   color: #DDF3FD;
 }
 
 body.light-mode {
-  background-color: #F5FCFF;
+  background-color: rgb(230, 230, 236);
   color: #021822;
+  position: relative;
+  z-index: 1;
+}
+body.dark-mode {
+  background-color: #010507;
+  color: #DDF3FD;
 }
 
 body.dark-mode .card {

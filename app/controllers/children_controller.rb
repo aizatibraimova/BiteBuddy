@@ -26,7 +26,7 @@ class ChildrenController < ApplicationController
 
     respond_to do |format|
       if @child.save
-        format.html { redirect_to @child, notice: "Child was successfully created." }
+        format.html { redirect_to children_path, notice: "Child was successfully created." }
         format.json { render :show, status: :created, location: @child }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class ChildrenController < ApplicationController
     @child.destroy!
 
     respond_to do |format|
-      format.html { redirect_to children_url, notice: "Child was successfully destroyed." }
+      format.html { redirect_to children_path, notice: "Child was successfully destroyed." }
       format.json { head :no_content }
     end
   end
