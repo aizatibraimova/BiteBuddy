@@ -1,3 +1,10 @@
+/*
+ *= require bootstrap
+ *= require landing
+ *= require_tree .
+ *= require_self
+ *= require dark_mode
+ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Global Styles */
@@ -35,25 +42,25 @@ body {
 }
 
 .card {
+  margin-bottom: 20px; /* Adds some spacing between cards */
+  overflow: hidden;    /* Ensures content doesn't overflow the card */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
-}
-
-.card-body {
-  flex: 1;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
 }
 
 .card-header {
-  background-color: #343a40;
-  color: #343a40;
+  background-color: #f8f9fa; /* Light background for the header */
+  padding: 10px;            /* Padding inside the header */
+  border-bottom: 1px solid #e9ecef; /* Border below the header */
 }
 
-.card-footer {
-  margin-top: auto;
+.card-body {
+  padding: 15px;            /* Padding inside the body */
+  flex-grow: 1;             /* Ensures the body grows with content */
+}
+
+.analysis-result .form-group {
+  margin-bottom: 20px; /* Adds some spacing between form groups */
 }
 
 /* Select Child Section Styles */

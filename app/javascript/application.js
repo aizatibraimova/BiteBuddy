@@ -13,5 +13,5 @@ Rails.start();
 ActiveStorage.start()
 channels.start()
 
-import "./dark_mode_toggle"
 import "./fetch_analysis_data"
+//= require fetch_analysis_data
