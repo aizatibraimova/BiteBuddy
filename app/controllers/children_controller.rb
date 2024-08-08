@@ -1,6 +1,7 @@
 class ChildrenController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_child, only: %i[ show edit update destroy details ]
+  before_action :set_child, only: %i[ show edit update details ]
+  before_action :set_child_by_params_id, only: %i[destroy]
 
   # GET /children or /children.json
   def index
@@ -86,6 +87,12 @@ class ChildrenController < ApplicationController
     @child = current_user.children.find(session[:selected_child_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to children_path, alert: "Please select a child first."
+  end
+
+  def set_child_by_params_id
+    @child = current_user.children.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to children_path, alert: "Child not found."
   end
 
   # Only allow a list of trusted parameters through.
