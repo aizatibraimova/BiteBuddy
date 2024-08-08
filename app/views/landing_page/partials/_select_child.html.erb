@@ -1,22 +1,16 @@
-<div class="select-child-section">
-  <div class="card mx-auto" style="max-width: 400px;">
-    <div class="card-body">
-      <h5 class="card-title">Select a Child</h5>
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="childDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Child
-        </button>
-        <div class="dropdown-menu" aria-labelledby="childDropdown">
-          <% @children.each do |child| %>
-            <a class="dropdown-item" href="#" data-form-id="select-child-form-<%= child.id %>">
-              <%= child.name %>
-            </a>
-            <%= form_with url: select_child_path, method: :post, id: "select-child-form-#{child.id}", style: "display: none;" do |form| %>
-              <%= form.hidden_field :child_id, value: child.id %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Select Your Child</h1>
+    <p class="lead text-muted">Choose the child you want to manage.</p>
+    <div class="form-group">
+      <label for="childSelect">Child</label>
+      <select class="form-control" id="childSelect">
+        <option>Child 1</option>
+        <option>Child 2</option>
+        <option>Child 3</option>
+      </select>
     </div>
+    <a href="#" class="btn btn-primary my-2">Go to Child's Details</a>
   </div>
-</div>
+</section>
