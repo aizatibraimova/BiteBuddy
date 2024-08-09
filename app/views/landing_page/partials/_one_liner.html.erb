@@ -3,8 +3,8 @@
     <h1 class="display-3">BiteBuddy</h1>
     <p>Ensuring safe meals, one bite at a time</p>
     <p>
-      <a class="btn btn-primary btn-lg mr-2" href="#" role="button">Sign Up Now</a>
-      <a class="btn btn-secondary btn-lg ml-2" href="#" role="button">Sign In Now</a>
+      <%= link_to 'Sign Up Now', new_user_registration_path, class: 'btn btn-primary btn-lg mr-2' %>
+      <%= link_to 'Sign In Now', new_user_session_path, class: 'btn btn-secondary btn-lg ml-2' %>
     </p>
   </div>
 </div>
