@@ -1,9 +1,6 @@
 /*
- *= require bootstrap
- *= require landing
  *= require_tree .
  *= require_self
- *= require dark_mode
  */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -14,34 +11,19 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f5fcff;
+  background-color: rgb(230, 230, 236);
   color: #021822;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
-.navbar-brand img {
-  height: 80px;
-  width: auto;
-}
-
-.cta .btn {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1.2em;
-}
-
-.features ul,
-.how-it-works ol {
-  list-style-position: inside;
-  text-align: left;
-}
-
+/* Card Styles */
 .card {
+  background-color: #ffffff; 
+  color: #021822;
   margin-bottom: 20px; /* Adds some spacing between cards */
   overflow: hidden;    /* Ensures content doesn't overflow the card */
   display: flex;
@@ -59,11 +41,43 @@ body {
   flex-grow: 1;             /* Ensures the body grows with content */
 }
 
-.analysis-result .form-group {
-  margin-bottom: 20px; /* Adds some spacing between form groups */
+/* List Group Item Styles */
+.list-group-item {
+  background-color: #f8f9fa; 
+  color: #021822;
 }
 
-/* Select Child Section Styles */
+/* Other Styles */
+.navbar {
+  background: linear-gradient(to right, #c4eafa, #15BCF4, #E16DF8); /* Gradient background */
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #021822; /* Text color */
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: #F755C9; /* Hover text color */
+}
+
+.navbar-brand img {
+  height: 80px;
+  width: auto;
+}
+
+/* Additional Styles */
+.cta .btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+.features ul,
+.how-it-works ol {
+  list-style-position: inside;
+  text-align: left;
+}
+
 .select-child-section {
   text-align: center;
   margin-bottom: 20px;
@@ -191,112 +205,6 @@ body {
 .text-content {
   max-width: 800px;
   text-align: center;
-}
-
-body.dark-mode {
-  background-color: #010507;
-  color: #DDF3FD;
-}
-
-body.light-mode {
-  background-color: rgb(230, 230, 236);
-  color: #021822;
-  position: relative;
-  z-index: 1;
-}
-
-body.dark-mode .card {
-  background-color: #1a1a1a; 
-  color: #DDF3FD; 
-}
-
-body.light-mode .card {
-  background-color: #ffffff; 
-  color: #021822; 
-}
-
-body.dark-mode .list-group-item {
-  background-color: #2a2a2a; 
-  color: #DDF3FD; 
-}
-
-body.light-mode .list-group-item {
-  background-color: #f8f9fa; 
-  color: #021822; 
-}
-
-.navbar.dark-mode {
-  background: linear-gradient(to right, #bee7fa, #0BB2EA, #7B0792 );
-}
-
-.navbar.light-mode {
-  background: linear-gradient(to right, #c4eafa, #15BCF4, #E16DF8 );
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: #DDF3FD;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #AA087C;
-}
-
-.navbar-light .navbar-nav .nav-link {
-  color: #021822;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-  color: #F755C9;
-}
-
-:root {
-  --jumbotron-padding-y: 3rem;
-}
-
-.jumbotron {
-  padding-top: var(--jumbotron-padding-y);
-  padding-bottom: var(--jumbotron-padding-y);
-  margin-bottom: 0;
-  background-color: #fff;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: calc(var(--jumbotron-padding-y) * 2);
-    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
-  }
-}
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron-heading {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-}
-
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-footer p {
-  margin-bottom: .25rem;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-h2.text-center {
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .card-custom-height {

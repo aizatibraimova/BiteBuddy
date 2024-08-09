@@ -13,18 +13,3 @@
     <a href="#" class="btn btn-primary my-2" id="goToChildDetails">Go to Child's Details</a>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const goToChildDetailsButton = document.getElementById('goToChildDetails');
-    const childSelect = document.getElementById('childSelect');
-
-    goToChildDetailsButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      const selectedChildId = childSelect.value;
-      if (selectedChildId) {
-        window.location.href = `/children/${selectedChildId}/details`;
-      }
-    });
-  });
-</script>

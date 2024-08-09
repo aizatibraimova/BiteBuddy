@@ -14,4 +14,4 @@ ActiveStorage.start()
 channels.start()
 
 import "./fetch_analysis_data"
-//= require fetch_analysis_data
+import "./child_selection"
