@@ -1,53 +1,21 @@
-<%= form_with(model: [@child, @analysis], local: true, id: "analysis-form") do |form| %>
-  <% if @analysis.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(@analysis.errors.count, "error") %> prohibited this analysis from being saved:</h2>
-      <ul>
-        <% @analysis.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<!-- app/views/analyses/new.html.erb -->
+<%= form_with url: child_analyses_path(@child), method: :post, local: true do |form| %>
   <div class="form-group">
-    <%= form.label :child_name, "Child Name" %>
-    <p class="form-control-plaintext"><%= @child.name %></p>
+    <%= form.label :start_date, "Start Date" %>
+    <%= form.date_field :start_date, required: true, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <label for="time_frame_select">Select Time Frame</label>
-    <select class="form-control" id="time_frame_select" data-child-id="<%= @child.id %>">
-      <option value="">Select a time frame</option>
-      <option value="2_days">2 Days</option>
-      <option value="1_week">1 Week</option>
-      <option value="2_weeks">2 Weeks</option>
-      <option value="1_month">1 Month</option>
-    </select>
+    <%= form.label :end_date, "End Date" %>
+    <%= form.date_field :end_date, required: true, class: "form-control" %>
   </div>
 
-  <div id="meals_and_allergies_data">
-    <!-- The fetched data will be populated here -->
-  </div>
+  <%= form.submit "Analyze Data", class: "btn btn-primary" %>
+<% end %>
 
-  <div class="form-group">
-    <%= form.label :findings %>
-    <%= form.text_field :findings, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :recommendations %>
-    <%= form.text_area :recommendations, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.hidden_field :meal_id %>
-    <%= form.hidden_field :allergy_id %>
-    <%= form.hidden_field :date %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit "Create Analysis", class: "btn btn-primary" %>
-    <%= link_to 'Back to Details', details_child_path(@child), class: 'btn btn-secondary' %>
+<% if @analysis_result.present? %>
+  <div class="analysis-result mt-4">
+    <h3>Analysis Result:</h3>
+    <p><%= @analysis_result %></p>
   </div>
 <% end %>

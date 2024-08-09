@@ -13,13 +13,9 @@ Rails.application.routes.draw do
     member do
       get "details", to: "children#details", as: :details
     end
-    resources :allergies do
-      resources :analyses, only: [:index, :create]
-    end
-    resources :meals  do
-      resources :analyses, only: [:index, :create]
-    end
-    resources :analyses do
+    resources :allergies
+    resources :meals
+    resources :analyses, only: [:index, :new, :create] do
       collection do
         get "fetch_meals_and_allergies"
       end

@@ -1,5 +1,5 @@
 <div class="sticky-top">
- <nav class="navbar navbar-expand-lg <%= session[:dark_mode] ? 'navbar-dark dark-mode' : 'navbar-light light-mode' %> mb-4">
+  <nav class="navbar navbar-expand-lg navbar-light mb-4">
     <div class="container-fluid">
       <%= link_to (user_signed_in? ? authenticated_root_path : unauthenticated_root_path), class: 'navbar-brand' do %>
         <%= image_tag 'logos/logo_nav.png', alt: 'BiteBuddy Logo', class: 'd-inline-block align-top' %>
@@ -82,11 +82,6 @@
             </li>
           </ul>
         <% end %>
-
-        <button id="dark-mode-toggle" class="btn btn-outline-secondary ml-2">
-          <i id="dark-mode-icon" class="fa-solid <%= session[:dark_mode] == 'enabled' ? 'fa-sun' : 'fa-moon' %>"></i>
-        </button>
-
       </div>
     </div>
   </nav>

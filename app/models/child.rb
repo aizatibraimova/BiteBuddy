@@ -18,4 +18,6 @@ class Child < ApplicationRecord
 
   validates :name, presence: true
   validates :date_of_birth, presence: true
+
+  include RansackableAttributes
 end

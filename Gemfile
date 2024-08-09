@@ -19,6 +19,8 @@ gem "puma"
 
 gem "openai"
 
+gem "ruby-openai"
+
 gem "ransack"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]

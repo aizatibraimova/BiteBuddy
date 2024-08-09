@@ -1,12 +1,14 @@
-<h1><%= @child.name %></h1>
-<p>Age: <%= @child.date_of_birth %></p>
-<p>Gender: <%= @child.gender %></p>
+<h1 class="display-4"><%= @child.name %></h1>
 
-<div>
-  <%= link_to 'View Details', details_child_path(@child) %>
+<div class="card mb-4">
+  <div class="card-body">
+    <p class="card-text"><strong>Age:</strong> <%= @child.date_of_birth %></p>
+    <p class="card-text"><strong>Gender:</strong> <%= @child.gender %></p>
+  </div>
+</div>
 
-  <%= link_to "Edit this child", edit_child_path(@child) %> |
-  <%= link_to "Back to children", children_path %>
-
-  <%= button_to "Destroy this child", @child, method: :delete %>
+<div class="btn-group" role="group" aria-label="Child actions">
+  <%= link_to 'Edit this child', edit_child_path(@child), class: 'btn btn-secondary' %>
+  <%= button_to 'Destroy this child', @child, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <%= link_to 'Back to children', children_path, class: 'btn btn-outline-primary' %>
 </div>

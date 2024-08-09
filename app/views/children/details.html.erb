@@ -1,57 +1,38 @@
 <h1><%= @child.name %>'s Details</h1>
 
 <div class="container mt-5">
-
   <div class="row">
     <div class="col-md-6">
-    <%= search_form_for @q_meals, url: details_child_path(@child), method: :get, html: { id: 'meals_form' } do |f| %>
-        <div class="row mb-3">
-          <div class="col">
-            <%= f.label :date_gteq, "Meals From Date" %>
-            <%= f.date_field :date_gteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.label :date_lteq, "Meals To Date" %>
-            <%= f.date_field :date_lteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.submit "Search Meals", class: "btn btn-primary mt-4" %>
-          </div>
-        </div>
-      <% end %>
+      <div class="mb-3 d-flex">
+        <%= link_to "Last 2 Days", details_child_path(@child, q_meals: { date_gteq: 2.days.ago, date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Week", details_child_path(@child, q_meals: { date_gteq: 1.week.ago, date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last 2 Weeks", details_child_path(@child, q_meals: { date_gteq: 2.weeks.ago, date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Month", details_child_path(@child, q_meals: { date_gteq: 1.month.ago, date_lteq: Time.current }), class: "btn btn-secondary" %>
+      </div>
 
       <%= render partial: 'shared/card', locals: {
         header: 'Meals', 
          items: @meals.map { |meal| item_card(meal, meal.food.name, @child) },
         footer_link: new_child_meal_path(@child), 
         footer_text: 'Log New Meal'
-      } 
-    %>
-
+      } %>
     </div>
+
     <div class="col-md-6">
-    <%= search_form_for @q_allergies, url: details_child_path(@child), method: :get, html: { id: 'allergies_form' } do |f| %>
-        <div class="row mb-3">
-          <div class="col">
-            <%= f.label :detected_date_gteq, "Allergies From Date" %>
-            <%= f.date_field :detected_date_gteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.label :detected_date_lteq, "Allergies To Date" %>
-            <%= f.date_field :detected_date_lteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.submit "Search Allergies", class: "btn btn-primary mt-4" %>
-          </div>
-        </div>
-      <% end %>
+      <div class="mb-3 d-flex">
+        <%= link_to "Last 2 Days", details_child_path(@child, q_allergies: { detected_date_gteq: 2.days.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Week", details_child_path(@child, q_allergies: { detected_date_gteq: 1.week.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last 2 Weeks", details_child_path(@child, q_allergies: { detected_date_gteq: 2.weeks.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Month", details_child_path(@child, q_allergies: { detected_date_gteq: 1.month.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill" %>
+      </div>
+
       <%= render partial: 'shared/card', locals: {
         header: 'Allergies', 
         items: @allergies.map { |allergy| item_card(allergy, allergy.description, @child) }, 
         footer_link: new_child_allergy_path(@child), 
         footer_text: 'Log New Allergy'
-      } 
-    %>
+      } %>
     </div>
   </div>
+</div>
 </div>

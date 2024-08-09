@@ -1,15 +1,31 @@
-<h1>Analysis Details</h1>
+<!-- app/views/analyses/show.html.erb -->
+<h1>Analysis Details for <%= @child.name %></h1>
 
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-12">
-      <%= render partial: 'shared/card', locals: {
-          header: 'Analysis Details',
-          items: [item_card(@analysis, @analysis.title, @child)],
-          footer_link: child_details_path(@child),
-          footer_text: 'Back to Details'
-        }
-      %>
+      <div class="card">
+        <div class="card-header">
+          <h2>Analysis Details</h2>
+        </div>
+        <div class="card-body">
+          <div class="card-item">
+            <h4>Analysis Date</h4>
+            <p><%= @analysis.date %></p>
+          </div>
+          <div class="card-item">
+            <h4>Findings</h4>
+            <p><%= raw @analysis.findings %></p>
+          </div>
+          <div class="card-item">
+            <h4>Recommendations</h4>
+            <p><%= raw @analysis.recommendations %></p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Back to Details', child_details_path(@child), class: 'btn btn-primary' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

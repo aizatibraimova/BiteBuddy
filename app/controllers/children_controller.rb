@@ -1,6 +1,7 @@
 class ChildrenController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_child, only: %i[ show edit update destroy details ]
+  before_action :set_child_by_params_id, only: %i[ show edit update destroy ]
+  before_action :set_selected_child, only: %i[details]
 
   # GET /children or /children.json
   def index
@@ -66,7 +67,7 @@ class ChildrenController < ApplicationController
 
   def details
     @children = current_user.children
-    @child = @children.find(params[:id])
+    # @child = @children.find(params[:id])
 
     @q_meals = @child.meals.ransack(params[:q_meals])
     @meals = @q_meals.result.includes(:food).order(date: :desc)
@@ -78,12 +79,18 @@ class ChildrenController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_child
-    unless session[:selected_child_id]
+  def set_child_by_params_id
+    @child = current_user.children.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to children_path, alert: "Child not found."
+  end
+
+  def set_selected_child
+    if session[:selected_child_id]
+      @child = current_user.children.find(session[:selected_child_id])
+    else
       redirect_to children_path, alert: "Please select a child first."
-      return
     end
-    @child = current_user.children.find(session[:selected_child_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to children_path, alert: "Please select a child first."
   end
