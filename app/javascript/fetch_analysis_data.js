@@ -1,46 +1,38 @@
-// document.addEventListener('turbo:load', function() {
-//   const timeFrameSelect = document.getElementById('time_frame_select');
-  
-//   if (timeFrameSelect) {
-//     timeFrameSelect.addEventListener('change', function() {
-//       const timeFrame = this.value;
-//       const childId = this.dataset.childId;
+document.addEventListener("DOMContentLoaded", function() {
+  const timeFrameSelect = document.getElementById("time_frame_select");
 
-//       fetch(`/children/${childId}/analyses/fetch_meals_and_allergies?time_frame=${timeFrame}`, {
-//         headers: {
-//           'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content,
-//           'Accept': 'application/json'
-//         }
-//       })
-//       .then(response => response.json())
-//       .then(data => {
-//         const findingsField = document.querySelector('input[name="analysis[findings]"]');
-//         const recommendationsField = document.querySelector('textarea[name="analysis[recommendations]"]');
-//         const mealIdField = document.querySelector('input[name="analysis[meal_id]"]');
-//         const dateField = document.querySelector('input[name="analysis[date]"]');
-//         const allergyIdField = document.querySelector('input[name="analysis[allergy_id]"]');
-//         const dataDiv = document.getElementById('meals_and_allergies_data');
+  if (timeFrameSelect) {
+    timeFrameSelect.addEventListener("change", function() {
+      const childId = timeFrameSelect.getAttribute("data-child-id");
+      const timeFrame = timeFrameSelect.value;
 
-//         let mealsContent = '<h3>Meals</h3>';
-//         data.meals.forEach(meal => {
-//           mealsContent += `<p>Food: ${meal.food_name} - Date: ${meal.date} - Notes: ${meal.notes}</p>`;
-//           mealIdField.value = meal.id; 
-//           dateField.value = meal.date;
-//         });
+      if (timeFrame) {
+        fetch(`/children/${childId}/analyses/fetch_meals_and_allergies?start_date=${startDate}&end_date=${endDate}`)
+          .then(response => response.json())
+          .then(data => {
+            const dataDiv = document.getElementById("meals_and_allergies_data");
+            dataDiv.innerHTML = ""; // Clear previous data
 
-//         let allergiesContent = '<h3>Allergies</h3>';
-//         data.allergies.forEach(allergy => {
-//           allergiesContent += `<p>Reaction: ${allergy.description} - Date: ${allergy.detected_date} - Notes: ${allergy.notes}</p>`;
-//           allergyIdField.value = allergy.id;
-//         });
+            data.meals.forEach(meal => {
+              const mealDiv = document.createElement("div");
+              mealDiv.className = "meal";
+              mealDiv.textContent = `Meal: ${meal.name}`;
+              dataDiv.appendChild(mealDiv);
+            });
 
-//         let analysisContent = `<h3>Analysis</h3><p>Findings: ${data.findings}</p><p>Recommendations: ${data.recommendations}</p>`;
+            data.allergies.forEach(allergy => {
+              const allergyDiv = document.createElement("div");
+              allergyDiv.className = "allergy";
+              allergyDiv.textContent = `Allergy: ${allergy.name}`;
+              dataDiv.appendChild(allergyDiv);
+            });
 
-//         findingsField.value = data.findings;
-//         recommendationsField.value = data.recommendations;
-//         dataDiv.innerHTML = mealsContent + allergiesContent + analysisContent;
-//       })
-//       .catch(error => console.error('Error fetching meals and allergies:', error));
-//     });
-//   }
-// });
+            document.getElementById("analysis_meal_id").value = data.selected_meal_id;
+            document.getElementById("analysis_allergy_id").value = data.selected_allergy_id;
+            document.getElementById("analysis_date").value = new Date().toISOString().split('T')[0];
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      }
+    });
+  }
+});
