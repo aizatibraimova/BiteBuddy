@@ -24,21 +24,21 @@ body {
 .card {
   background-color: #ffffff; 
   color: #021822;
-  margin-bottom: 20px; /* Adds some spacing between cards */
-  overflow: hidden;    /* Ensures content doesn't overflow the card */
+  margin-bottom: 20px; 
+  overflow: hidden;   
   display: flex;
   flex-direction: column;
 }
 
 .card-header {
-  background-color: #f8f9fa; /* Light background for the header */
-  padding: 10px;            /* Padding inside the header */
-  border-bottom: 1px solid #e9ecef; /* Border below the header */
+  background-color: #f8f9fa; 
+  padding: 10px;            
+  border-bottom: 1px solid #e9ecef; 
 }
 
 .card-body {
-  padding: 15px;            /* Padding inside the body */
-  flex-grow: 1;             /* Ensures the body grows with content */
+  padding: 15px;            
+  flex-grow: 1;             
 }
 
 /* List Group Item Styles */
@@ -49,15 +49,15 @@ body {
 
 /* Other Styles */
 .navbar {
-  background: linear-gradient(to right, #c4eafa, #15BCF4, #E16DF8); /* Gradient background */
+  background: linear-gradient(to right, #c4eafa, #15BCF4, #E16DF8); 
 }
 
 .navbar .navbar-nav .nav-link {
-  color: #021822; /* Text color */
+  color: #021822; 
 }
 
 .navbar .navbar-nav .nav-link:hover {
-  color: #F755C9; /* Hover text color */
+  color: #F755C9; 
 }
 
 .navbar-brand img {
@@ -170,48 +170,17 @@ body {
   padding: 50px 0;
 }
 
-.one-liner-section {
-  background-color: #f8f9fa;
-  text-align: center;
-}
-
-.cta-section {
-  background-color: #e9ecef;
-  text-align: center;
-}
-
-.select-child-section {
-  background-color: #f8f9fa;
-  text-align: center;
-}
-
-.how-to-use-section {
-  background-color: #e9ecef;
-}
-
 .about-us-section {
   background-color: #f8f9fa;
   text-align: center;
 }
 
-.content-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.text-content {
-  max-width: 800px;
-  text-align: center;
-}
-
 .card-custom-height {
-  height: 100px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .card-title {
