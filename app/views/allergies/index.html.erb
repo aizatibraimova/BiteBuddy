@@ -4,28 +4,11 @@
   <div class="row">
     <div class="col-md-12">
 
-    <%= search_form_for @q, url: child_allergies_path(@child), method: :get do |f| %>
-        <div class="row mb-3">
-          <div class="col">
-            <%= f.label :detected_date_gteq, "From Date" %>
-            <%= f.date_field :detected_date_gteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.label :detected_date_lteq, "To Date" %>
-            <%= f.date_field :detected_date_lteq, class: "form-control" %>
-          </div>
-          <div class="col">
-            <%= f.submit "Search", class: "btn btn-primary mt-4" %>
-          </div>
-        </div>
-      <% end %>
-
-
-       <div class="mb-3">
-        <%= link_to "Last 2 Days", child_allergies_path(@child, q: { detected_date_gteq: 2.days.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
-        <%= link_to "Last Week", child_allergies_path(@child, q: { detected_date_gteq: 1.week.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
-        <%= link_to "Last 2 Weeks", child_allergies_path(@child, q: { detected_date_gteq: 2.weeks.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary mr-2" %>
-        <%= link_to "Last Month", child_allergies_path(@child, q: { detected_date_gteq: 1.month.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary" %>
+       <div class="mb-3 d-flex">
+        <%= link_to "Last 2 Days", child_allergies_path(@child, q: { detected_date_gteq: 2.days.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Week", child_allergies_path(@child, q: { detected_date_gteq: 1.week.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last 2 Weeks", child_allergies_path(@child, q: { detected_date_gteq: 2.weeks.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
+        <%= link_to "Last Month", child_allergies_path(@child, q: { detected_date_gteq: 1.month.ago, detected_date_lteq: Time.current }), class: "btn btn-secondary flex-fill" %>
       </div>
       
       <%= render partial: 'shared/card', locals: {
