@@ -4,6 +4,14 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
+    @child = current_user.children.find(params[:child_id])
+
+    @breadcrumbs = [
+      { content: "Home", href: authenticated_root_path },
+      { content: "Children", href: children_path },
+      { content: @child.name, href: details_child_path(@child) },
+      { content: "Meals", href: child_meals_path(@child) },
+    ]
     @q = @child.meals.ransack(params[:q])
     @meals = @q.result(distinct: true).page(params[:page]).per(10)
   end
