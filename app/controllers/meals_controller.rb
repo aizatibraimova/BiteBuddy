@@ -5,7 +5,7 @@ class MealsController < ApplicationController
   # GET /meals or /meals.json
   def index
     @q = @child.meals.ransack(params[:q])
-    @meals = @q.result(distinct: true)
+    @meals = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   # GET /meals/1 or /meals/1.json

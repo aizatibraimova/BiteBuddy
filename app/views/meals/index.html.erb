@@ -3,7 +3,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-12">
-     
+
       <!-- Quick date range links -->
       <div class="mb-3 d-flex">
         <%= link_to "Last 2 Days", child_meals_path(@child, q: { created_at_gteq: 2.days.ago, created_at_lteq: Time.current }), class: "btn btn-secondary flex-fill mr-2" %>
@@ -19,6 +19,7 @@
           footer_text: "Log New Meal"
         } 
       %>
+      <%= paginate @meals %>
     </div>
   </div>
 </div>
