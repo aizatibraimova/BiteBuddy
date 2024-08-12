@@ -6,7 +6,7 @@ services:
     buildCommand: "./bin/render-build.sh" # # we already created these two files for you
     startCommand: "./bin/render-start.sh"
     envVars: # this section sets some ENV variables needed by Render for deployment
-      - key: RAILS_MASTER_KEY
+      - key: SECRET_KEY_BASE
         generateValue: true
       - key: DATABASE_URL
         fromDatabase:
