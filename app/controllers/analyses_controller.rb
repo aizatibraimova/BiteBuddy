@@ -4,6 +4,14 @@ class AnalysesController < ApplicationController
 
   # GET /analyses or /analyses.json
   def index
+    @child = current_user.children.find(params[:child_id])
+
+    @breadcrumbs = [
+      { content: "Home", href: authenticated_root_path },
+      { content: "Children", href: children_path },
+      { content: @child.name, href: details_child_path(@child) },
+      { content: "Analyses", href: child_analyses_path(@child) },
+    ]
     @analyses = @child.analyses.includes(:meal, :allergy)
   end
 
@@ -37,7 +45,7 @@ class AnalysesController < ApplicationController
       allergy_id: prepared_data[:allergies].first&.id, # Adjust as necessary
       date: Date.today,
       findings: @analysis_result[:findings],
-      recommendations: @analysis_result[:recommendations]
+      recommendations: @analysis_result[:recommendations],
     )
 
     if @analysis.save
@@ -58,7 +66,7 @@ class AnalysesController < ApplicationController
       meals: meals.map { |meal| { id: meal.id, name: meal.name } },
       allergies: allergies.map { |allergy| { id: allergy.id, name: allergy.name } },
       selected_meal_id: meals.first&.id,
-      selected_allergy_id: allergies.first&.id
+      selected_allergy_id: allergies.first&.id,
     }
   end
 

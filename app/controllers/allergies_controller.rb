@@ -6,8 +6,16 @@ class AllergiesController < ApplicationController
 
   # GET /allergies or /allergies.json
   def index
+    @child = current_user.children.find(params[:child_id])
+
+    @breadcrumbs = [
+      { content: "Home", href: authenticated_root_path },
+      { content: "Children", href: children_path },
+      { content: @child.name, href: details_child_path(@child) },
+      { content: "Allergies", href: child_allergies_path(@child) },
+    ]
     @q = @child.allergies.ransack(params[:q])
-    @allergies = @q.result(distinct: true)
+    @allergies = @q.result(distinct: true).page(params[:page]).per(7)
   end
 
   # GET /allergies/1 or /allergies/1.json

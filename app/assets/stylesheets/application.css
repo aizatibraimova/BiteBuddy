@@ -12,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: rgb(230, 230, 236);
+  background-color: #F2EFE5;
   color: #021822;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ body {
 
 /* Card Styles */
 .card {
-  background-color: #ffffff; 
+  background-color: #B4B4B8; 
   color: #021822;
   margin-bottom: 20px; 
   overflow: hidden;   
@@ -31,7 +31,7 @@ body {
 }
 
 .card-header {
-  background-color: #f8f9fa; 
+  background-color: #B4B4B8; 
   padding: 10px;            
   border-bottom: 1px solid #e9ecef; 
 }
@@ -49,7 +49,7 @@ body {
 
 /* Other Styles */
 .navbar {
-  background: linear-gradient(to right, #c4eafa, #15BCF4, #E16DF8); 
+  background: #C7C8CC
 }
 
 .navbar .navbar-nav .nav-link {
@@ -177,6 +177,7 @@ body {
 
 .card-custom-height {
   height: 200px;
+  background-color: #B5C0D0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

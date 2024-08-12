@@ -1,3 +1,5 @@
+<%= render 'shared/breadcrumbs' %>
+
 <h1><%= @child.name %>'s Details</h1>
 
 <div class="container mt-5">
@@ -16,6 +18,7 @@
         footer_link: new_child_meal_path(@child), 
         footer_text: 'Log New Meal'
       } %>
+      <%= paginate @meals %>
     </div>
 
     <div class="col-md-6">
@@ -32,6 +35,7 @@
         footer_link: new_child_allergy_path(@child), 
         footer_text: 'Log New Allergy'
       } %>
+       <%= paginate @allergies %>
     </div>
   </div>
 </div>
