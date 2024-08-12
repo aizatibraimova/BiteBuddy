@@ -6,6 +6,11 @@ class ChildrenController < ApplicationController
   # GET /children or /children.json
   def index
     @children = current_user.children
+
+    @breadcrumbs = [
+    { content: "Home", href: authenticated_root_path },
+    { content: "Children", href: children_path }
+  ]
   end
 
   # GET /children/1 or /children/1.json
@@ -67,6 +72,14 @@ class ChildrenController < ApplicationController
 
   def details
     @children = current_user.children
+
+    @child = current_user.children.find(params[:id]) 
+
+    @breadcrumbs = [
+      { content: "Home", href: authenticated_root_path },
+      { content: "Children", href: children_path },
+      { content: @child.name, href: details_child_path(@child) },
+    ]
 
     @q_meals = @child.meals.ransack(params[:q_meals])
     @meals = @q_meals.result.includes(:food).order(date: :desc).page(params[:page]).per(5)
