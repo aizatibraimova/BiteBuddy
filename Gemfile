@@ -17,6 +17,8 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma"
 
+gem "faker"
+
 gem "openai"
 
 gem "ruby-openai"
