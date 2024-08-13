@@ -12,6 +12,3 @@ import Rails from "@rails/ujs"
 Rails.start();
 ActiveStorage.start()
 channels.start()
-
-import "./fetch_analysis_data"
-import "./child_selection"
