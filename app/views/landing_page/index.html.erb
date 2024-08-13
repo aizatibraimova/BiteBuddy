@@ -1,7 +1,9 @@
 <% if user_signed_in? %>
   <%= render 'landing_page/partials/select_child' %>
   <%= render 'landing_page/partials/how_to_use' %>
+  <%= render 'landing_page/partials/about_us' %>
 <% else %>
   <%= render 'landing_page/partials/one_liner' %>
   <%= render 'landing_page/partials/how_to_use' %>
+  <%= render 'landing_page/partials/about_us' %>
 <% end %>
