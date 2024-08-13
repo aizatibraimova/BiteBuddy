@@ -12,8 +12,6 @@ services:
         fromDatabase:
           name: db
           property: connectionString
-      - key: RAILS_MASTER_KEY
-        value: YOUR_GENERATED_MASTER_KEY
 databases: # this section provides some additional database configuration
   - name: db
     plan: free
