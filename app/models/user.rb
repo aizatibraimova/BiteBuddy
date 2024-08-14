@@ -23,4 +23,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :children, class_name: "Child", foreign_key: "caregiver_id", dependent: :destroy
+  has_many :foods, dependent: :destroy
 end
