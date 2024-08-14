@@ -1,16 +1,13 @@
-      <div class="card">
-        <div class="card-header">
-          <h2><%= @food.name %></h2>
-        </div>
-        <div class="card-body">
-          <p><strong>Category:</strong> <%= @food.category %></p>
-        </div>
-        <div class="card-footer">
-          <%= link_to 'Edit this food', edit_food_path(@food), class: 'btn btn-warning mr-2' %>
-          <%= link_to 'Back to foods', foods_path, class: 'btn btn-secondary mr-2' %>
-          <%= link_to 'Destroy this food', @food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-        </div>
-      </div>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <h2><%= @food.name %></h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Category:</strong> <%= @food.category %></p>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit this food', edit_food_path(@food), class: 'btn btn-warning mr-2' %>
+    <%= link_to 'Back to foods', foods_path, class: 'btn btn-secondary mr-2' %>
+    <%= link_to 'Destroy this food', food_path(@food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   </div>
 </div>
