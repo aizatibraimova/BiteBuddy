@@ -44,7 +44,7 @@ infant_toddler_foods = [
   "Soft Pear Slices",
 ]
 
-User.create!(
+test_user = User.create!(
   email: "testuser@example.com", # Specific email for testing
   password: "password",
   password_confirmation: "password",
@@ -73,6 +73,7 @@ infant_toddler_foods.each do |food|
   Food.create!(
     name: food,
     category: "Infant/Toddler Food",
+    user_id: test_user.id
   )
 end
 

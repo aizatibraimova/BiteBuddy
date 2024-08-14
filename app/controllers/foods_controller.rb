@@ -1,11 +1,12 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_food, only: %i[ show edit update destroy ]
 
   helper FoodsHelper
 
   # GET /foods or /foods.json
   def index
-    @foods = Food.page(params[:page]).per(10)
+    @foods = current_user.foods.page(params[:page]).per(10)
   end
 
   # GET /foods/1 or /foods/1.json
@@ -23,7 +24,7 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @food = Food.new(food_params)
+    @food = current_user.foods.build(food_params)
 
     respond_to do |format|
       if @food.save
