@@ -1,14 +1,18 @@
-<h1 class="display-4"><%= @child.name %></h1>
+<h1>Child Details</h1>
 
-<div class="card mb-4">
-  <div class="card-body">
-    <p class="card-text"><strong>Age:</strong> <%= @child.date_of_birth %></p>
-    <p class="card-text"><strong>Gender:</strong> <%= @child.gender %></p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'shared/card', locals: {
+          header: 'Child Details',
+          items: [
+            { name: "<strong>Age:</strong> #{@child.date_of_birth}".html_safe },
+            { name: "<strong>Gender:</strong> #{@child.gender}".html_safe }
+          ],
+          footer_link: children_path,
+          footer_text: 'Back to Children'
+        }
+      %>
+    </div>
   </div>
-</div>
-
-<div class="btn-group" role="group" aria-label="Child actions">
-  <%= link_to 'Edit this child', edit_child_path(@child), class: 'btn btn-secondary' %>
-  <%= button_to 'Destroy this child', @child, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  <%= link_to 'Back to children', children_path, class: 'btn btn-outline-primary' %>
 </div>

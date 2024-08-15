@@ -1,10 +1,25 @@
-<h1>Editing food</h1>
+<h1>Edit Food</h1>
 
-<%= render "form", food: @food %>
-
-<br>
-
-<div>
-  <%= link_to "Show this food", @food %> |
-  <%= link_to "Back to foods", foods_path %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_with(model: @food, local: true) do |form| %>
+        <div class="card-body">
+          <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control', placeholder: 'Enter food name' %>
+          </div>
+          <div class="form-group mt-3">
+            <%= form.label :category, style: "display: block" %>
+            <%= form.select :category, options_for_select(food_categories, @food.category), { prompt: 'Select a Category' }, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= form.submit 'Update Food', class: 'btn btn-primary' %>
+          <%= link_to 'Show this Food', @food, class: 'btn btn-secondary ms-2' %>
+          <%= link_to 'Back to Foods', foods_path, class: 'btn btn-secondary ms-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
