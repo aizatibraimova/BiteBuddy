@@ -63,16 +63,12 @@
                   <% end %>
                 <% end %>
               </div>
-
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-flex align-items-center justify-content-start justify-content-lg-center">
               <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <li class="nav-item">
-                <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link btn-link', style: 'padding: 0; border: none; background: none;' %>
-              </li>
-
+            <li class="nav-item d-flex align-items-center justify-content-start justify-content-lg-center">
+              <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link btn-link', style: 'padding: 0; border: none; background: none;' %>
             </li>
           </ul>
         <% else %>
