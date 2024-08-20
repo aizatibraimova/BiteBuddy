@@ -6,7 +6,13 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = policy_scope(Food).page(params[:page]).per(10)
+    @breadcrumbs = [
+      { content: "Home", href: authenticated_root_path },
+      { content: "Foods", href: foods_path },
+    ]
+
+    @q = policy_scope(current_user.foods).ransack(params[:q])
+    @foods = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   # GET /foods/1 or /foods/1.json
