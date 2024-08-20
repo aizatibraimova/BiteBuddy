@@ -11,26 +11,30 @@ class FoodsController < ApplicationController
       { content: "Foods", href: foods_path },
     ]
 
-    @q = current_user.foods.ransack(params[:q])
+    @q = policy_scope(Food).ransack(params[:q])
     @foods = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   # GET /foods/1 or /foods/1.json
   def show
+    authorize @food
   end
 
   # GET /foods/new
   def new
-    @food = Food.new
+    @food = current_user.foods.build
+    authorize @food
   end
 
   # GET /foods/1/edit
   def edit
+    authorize @food
   end
 
   # POST /foods or /foods.json
   def create
     @food = current_user.foods.build(food_params)
+    authorize @food
 
     respond_to do |format|
       if @food.save
@@ -45,6 +49,8 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
+    authorize @food
+
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to food_url(@food), notice: "Food was successfully updated." }
@@ -58,6 +64,8 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
+    authorize @food
+
     @food.destroy!
 
     respond_to do |format|
@@ -71,6 +79,7 @@ class FoodsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_food
     @food = current_user.foods.find(params[:id])
+    authorize @food
   end
 
   # Only allow a list of trusted parameters through.
