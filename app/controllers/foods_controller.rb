@@ -6,7 +6,7 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = current_user.foods.page(params[:page]).per(10)
+    @foods = policy_scope(Food).page(params[:page]).per(10)
   end
 
   # GET /foods/1 or /foods/1.json

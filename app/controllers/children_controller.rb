@@ -5,7 +5,7 @@ class ChildrenController < ApplicationController
 
   # GET /children or /children.json
   def index
-    @children = current_user.children
+    @children = policy_scope(Child)
 
     @breadcrumbs = [
     { content: "Home", href: authenticated_root_path },
@@ -15,20 +15,24 @@ class ChildrenController < ApplicationController
 
   # GET /children/1 or /children/1.json
   def show
+    authorize @child
   end
 
   # GET /children/new
   def new
-    @child = Child.new
+    @child = current_user.children.build
+    authorize @child
   end
 
   # GET /children/1/edit
   def edit
+    authorize @child
   end
 
   # POST /children or /children.json
   def create
     @child = current_user.children.build(child_params)
+    authorize @child
 
     respond_to do |format|
       if @child.save
@@ -43,6 +47,8 @@ class ChildrenController < ApplicationController
 
   # PATCH/PUT /children/1 or /children/1.json
   def update
+    authorize @child
+
     respond_to do |format|
       if @child.update(child_params)
         format.html { redirect_to child_url(@child), notice: "Child was successfully updated." }
@@ -56,6 +62,8 @@ class ChildrenController < ApplicationController
 
   # DELETE /children/1 or /children/1.json
   def destroy
+    authorize @child
+
     @child.destroy!
 
     respond_to do |format|
@@ -66,14 +74,17 @@ class ChildrenController < ApplicationController
 
   def select
     @selected_child = current_user.children.find(params[:child_id])
+    authorize @selected_child
+
     session[:selected_child_id] = @selected_child.id
     redirect_to details_child_path(@selected_child)
   end
 
   def details
-    @children = current_user.children
+    @children = policy_scope(Child)
 
     @child = current_user.children.find(params[:id]) 
+    authorize @child
 
     @breadcrumbs = [
       { content: "Home", href: authenticated_root_path },
@@ -93,6 +104,7 @@ class ChildrenController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_child_by_params_id
     @child = current_user.children.find(params[:id])
+    authorize @child
   rescue ActiveRecord::RecordNotFound
     redirect_to children_path, alert: "Child not found."
   end
@@ -100,6 +112,7 @@ class ChildrenController < ApplicationController
   def set_selected_child
     if session[:selected_child_id]
       @child = current_user.children.find(session[:selected_child_id])
+      authorize @child
     else
       redirect_to children_path, alert: "Please select a child first."
     end
