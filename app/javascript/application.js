@@ -14,3 +14,4 @@ ActiveStorage.start()
 channels.start()
 
 import "./fetch_analysis_data"
+import './pwa/companion';
