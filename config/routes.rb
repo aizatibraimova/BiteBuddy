@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  draw(:pwa)
+  
   devise_for :users
 
   authenticated :user do
