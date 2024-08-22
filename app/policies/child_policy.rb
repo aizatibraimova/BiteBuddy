@@ -25,6 +25,14 @@ class ChildPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def select?
+    user_is_owner?
+  end
+
+  def details?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?
