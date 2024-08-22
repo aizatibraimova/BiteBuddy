@@ -48,7 +48,6 @@ class OpenAiAnalysisService
   end
 
   def parse_result(result_text)
-    # Assuming the result text is in a parsable format, adjust as necessary
     findings = result_text.split("\n\n").first
     recommendations = result_text.split("\n\n").last
 

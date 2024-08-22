@@ -84,7 +84,7 @@ class ChildrenController < ApplicationController
     @children = policy_scope(Child)
 
     @child = current_user.children.find(params[:id])
-    authorize @child
+    authorize @child, :details?
 
     @breadcrumbs = [
       { content: "Home", href: authenticated_root_path },
