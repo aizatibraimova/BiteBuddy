@@ -4,6 +4,7 @@ class AnalysesController < ApplicationController
 
   # GET /analyses or /analyses.json
   def index
+    # You are already calling this here but it is also being called in the before action. Repeating yourself.
     @child = current_user.children.find(params[:child_id])
 
     @breadcrumbs = [
@@ -32,7 +33,7 @@ class AnalysesController < ApplicationController
   def create
     start_date = params[:start_date].to_date
     end_date = params[:end_date].to_date
-
+    # Great use of services here to abstract the logic!
     data_service = ChildDataService.new(@child, start_date, end_date)
     prepared_data = data_service.prepare_data
 

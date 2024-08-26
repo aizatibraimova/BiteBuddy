@@ -15,6 +15,7 @@ class ChildrenController < ApplicationController
 
   # GET /children/1 or /children/1.json
   def show
+    # You can add a before action to help keep things DRY.
     authorize @child
   end
 

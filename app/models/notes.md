@@ -1,0 +1,1 @@
+Great models! Just one thing we noticed. Validations seem to not give a message whenm creatimg certian things. It doesnt allow them to be created so it is working. But the user gets no feedback to know if it did not work. 
