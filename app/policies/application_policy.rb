@@ -1,5 +1,6 @@
 # app/policies/application_policy.rb
 class ApplicationPolicy
+  # Great use of Pundit!
   attr_reader :user, :record
 
   def initialize(user, record)

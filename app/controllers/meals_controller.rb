@@ -5,7 +5,7 @@ class MealsController < ApplicationController
   # GET /meals or /meals.json
   def index
     @child = current_user.children.find(params[:child_id])
-
+    # Love the breadcrumbs!
     @breadcrumbs = [
       { content: "Home", href: authenticated_root_path },
       { content: "Children", href: children_path },
